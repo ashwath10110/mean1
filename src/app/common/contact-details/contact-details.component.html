@@ -1,0 +1,74 @@
+<div>
+        <span class="title mat-subheading-2">Contacts</span>
+        <button *ngIf="isAddBtnVisible" mat-button color="accent" (click)="onClickAddContact($event, 'add')" [disabled]="contacts?.length == 5">
+                <mat-icon>add</mat-icon>Add New
+        </button>
+</div>
+
+<div class="new-contact" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center" *ngIf="isAddVisible">
+        <span fxFlex="100" class="mat-body-2">Enter New Contact</span>
+        <mat-form-field fxFlex="98">
+                <input type="number" matInput #contactPhone="ngModel" [(ngModel)]="newContact.phone" placeholder="Phone Number" pattern="^[0-9]{10}$" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="98">
+                <input type="email" matInput #contactEmail="ngModel" [(ngModel)]="newContact.email" placeholder="Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="98">
+                <input type="text" matInput #contactRemarks="ngModel" [(ngModel)]="newContact.remarks" placeholder="Remarks" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="98">
+                <input type="text" matInput #contactFullname="ngModel" [(ngModel)]="newContact.fullName" placeholder="Enter Full Name" required>
+        </mat-form-field>
+                
+        <div fxFlex="60">
+                <button fxFlex="60" type="button" color="accent" [disabled]="!contactRemarks?.valid || !contactEmail?.valid || !contactFullname?.valid || !contactPhone?.valid"
+                        mat-icon-button (click)="onClickSaveContact($event, newContact)">
+                        <mat-icon>check</mat-icon>
+                </button>
+                <button fxFlex="60" type="button" color="warn" mat-icon-button (click)="onClickUndoEntry($event)">
+                        <mat-icon>close</mat-icon>
+                </button>
+        </div>
+
+</div>
+
+<div *ngIf="contacts?.length > 0" class="table_fix_h">
+        <p-table [value]="contacts" [rows]="10">
+                <ng-template pTemplate="header">
+                        <tr>
+                                <th>Name</th>
+                                <th>Remarks</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                        </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-contact>
+                        <tr>
+                                <td>
+                                        {{contact.fullName}}
+                                </td>
+                                <td>
+                                        {{contact.remarks}}
+                                </td>
+                                <td>
+                                        {{contact.phone}}
+                                </td>
+                                <td>
+                                        {{contact.email}}
+                                </td>
+                                <td>
+                                        <button mat-icon-button type="button" (click)="populateSelectedContact(contact)">
+                                                <mat-icon aria-hidden="true">visibility</mat-icon>
+                                        </button>
+                                        <button mat-icon-button type="button" color="warn" type="submit" (click)="onDeleteContact($event, contact)">
+                                                <mat-icon aria-hidden="true">delete</mat-icon>
+                                        </button>
+                                </td>
+                        </tr>
+                </ng-template>
+        </p-table>
+</div>
+<div fxFlex="100" *ngIf="(contacts || []).length == 0" fxLayoutAlign="start center">
+        <span class="mat-body-2">There are no contacts</span>
+</div>

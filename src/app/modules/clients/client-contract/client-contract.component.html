@@ -1,0 +1,154 @@
+<span class="page-title mat-display-1">Contract Setup</span>
+
+<p-breadcrumb [model]="breadCrumbs"></p-breadcrumb>
+
+<mat-card class="content">
+
+  <form fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="clientContractFormGroup" id="clientContractForm"
+    (ngSubmit)="onSubmitClientContract(clientContractFormGroup)">
+
+    <mat-form-field fxFlex="48">
+      <input id="startDate" matInput [matDatepicker]="startpicker" placeholder="Contract Start Date" formControlName="creditPeriodStart"
+        required>
+      <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+      <mat-datepicker #startpicker></mat-datepicker>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.creditPeriodStart?.errors?.required">Contract start date by is
+          mandatory</span>
+        <span *ngIf="clientContractFormGroup?.controls.creditPeriodStart?.errors?.pattern">Contract start date is not in correct format</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <input id="endDate" matInput [matDatepicker]="endpicker" placeholder="Contract End Date" formControlName="creditPeriodEnd"
+        useValueAsDate required>
+      <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+      <mat-datepicker #endpicker></mat-datepicker>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.creditPeriodEnd?.errors?.required">Contract End date by is
+          mandatory</span>
+        <span *ngIf="clientContractFormGroup?.controls.creditPeriodEnd?.errors?.pattern">Contract End date is not in correct format</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-error fxFlex="96" class="text-center">
+      <span id="errMsgDates" *ngIf="clientContractFormGroup?.controls.creditPeriodEnd?.errors?.dates">{{clientContractFormGroup.controls.creditPeriodEnd.errors.dates}}</span>
+    </mat-error>
+
+    <mat-form-field fxFlex="48">
+      <input matInput [matDatepicker]="signedOn" id="signedOn" placeholder="Contract Signed On" formControlName="signedOn"
+        required>
+      <mat-datepicker-toggle matSuffix [for]="signedOn"></mat-datepicker-toggle>
+      <mat-datepicker #signedOn></mat-datepicker>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.signedOn?.errors?.required">Contract signed date is mandatory</span>
+        <span *ngIf="clientContractFormGroup?.controls.signedOn?.errors?.pattern">Contract signed date is not in correct format</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <input type="text" matInput placeholder="Contract Signed By" id="signedBy" formControlName="signedBy" required>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.signedBy?.errors?.required">Contract signed by is mandatory</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <input type="number" id="numberOfLeads" matInput placeholder="Number of Leads (MGA)" formControlName="numberOfLeads"
+        required>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.numberOfLeads?.errors?.required">Number of Leads Required</span>
+        <span *ngIf="clientContractFormGroup?.controls.numberOfLeads?.errors?.pattern">Number of Leads is invalid</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <input type="number" id="mgaPerLead" matInput placeholder="MGA Per Lead" formControlName="extraLeadMga" required>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.extraLeadMga?.errors?.required">MGA Per lead is required</span>
+        <span *ngIf="clientContractFormGroup?.controls.extraLeadMga?.errors?.pattern">MGA Per lead is invalid</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <input type="number" id="mga" matInput placeholder="MGA Amount" formControlName="mga" required>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.mga?.errors?.required">MGA amount is required</span>
+        <span *ngIf="clientContractFormGroup?.controls.mga?.errors?.pattern">MGA amount is invalid</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <mat-label>MGA Period</mat-label>
+      <mat-select #fontSize value="MONTHLY" formControlName="mgaPeriod" id="mgaPeriod" required>
+        <mat-option value="MONTHLY">Monthly</mat-option>
+        <mat-option value="QUARTERLY">Quarterly</mat-option>
+        <mat-option value="HALF_YEARLY">Half-Yearly</mat-option>
+        <mat-option value="YEARLY">Yearly</mat-option>
+      </mat-select>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.mgaPeriod?.errors?.required">Mga Period Required</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <input type="number" matInput placeholder="Lead Count Threshold" formControlName="leadCountThreshold" id="leadCountThreshold"
+        required>
+      <mat-error>
+        <span *ngIf="clientContractFormGroup?.controls.leadCountThreshold?.errors?.required">Lead count threshold is
+          required</span>
+        <span *ngIf="clientContractFormGroup?.controls.leadCountThreshold?.errors?.pattern">Lead count threshold is invalid number</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <mat-label>Invoice Frequency</mat-label>
+      <mat-select #fontSize formControlName="invoiceFrequency" id="invoiceFrequency">
+        <mat-option value="MONTHLY">Monthly</mat-option>
+        <mat-option value="QUARTERLY">Quarterly</mat-option>
+        <mat-option value="HALF_YEARLY">Half-Yearly</mat-option>
+        <mat-option value="YEARLY">Yearly</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <input type="number" matInput placeholder="Invoice Day" formControlName="invoiceDay" id="invoiceDay">
+    </mat-form-field>
+
+    <div fxFlex="98" fxLayout="row" fxLayoutAlign="start center" flexGap="40px">
+      <div class="mat-subheading-2">Attachments</div>
+      <button class="subheading-action" type="button" mat-icon-button *ngIf="!clientContractFormGroup.get('attachments').value"
+        (click)="clientContractFormGroup.get('attachments').setValue(true)">
+        <mat-icon color="accent">add</mat-icon>
+      </button>
+      <button class="subheading-action" type="button" mat-icon-button *ngIf="clientContractFormGroup.get('attachments').value"
+        (click)="clientContractFormGroup.get('attachments').setValue(false)">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex="98" *ngIf="clientContractFormGroup.get('attachments').value === true">
+      <app-media-container 
+        [maxSizeInKb]="maxSizeInKb"
+        [tenantId]="parentRouteId"
+        [fileTypes]="fileTypes"
+        [attachmentIds]="attachmentIds"
+        (updates)="handleFileUpload($event)">
+      </app-media-container>
+    </div>
+    
+    <mat-checkbox id="agreement" [(checked)]="agree" fxFlex="98" formControlName="agree" required>
+      I agree to these <span class="highlight" (click)="onClickTerms($event)">terms and conditions.</span>
+    </mat-checkbox>
+
+    <div class="actions" fxFlex="98" flexLayout="row" flexLayoutAlign="center center">
+      <button id="saveContract" mat-raised-button color="primary" type="submit" [disabled]="!clientContractFormGroup.valid">Update
+        Contract
+      </button>
+    </div>
+
+  </form>
+
+  <!-- <button mat-raised-button (click)="loadDummyValidData()">_</button> -->
+
+</mat-card>

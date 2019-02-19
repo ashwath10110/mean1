@@ -1,0 +1,176 @@
+<p-breadcrumb [model]="breadCrumbs"></p-breadcrumb>
+
+<div fxLayout="row wrap" fxLayoutAlign="start start" *ngIf="!clientData?.loading">
+
+        <mat-card class="tenant-card text-center">
+                <mat-card-header>
+                        <mat-card-title>Org Tree</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">
+                                <span> 
+                                        Organisation Tree of hospital can be 
+                                        <br/> viewed or updated here.
+                                </span>
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button id="gotoOrgTree" type="button" (click)="gotoOrgTree()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card>
+
+        <mat-card class="tenant-card text-center">
+                <mat-card-header>
+                        <mat-card-title>Contract</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <!-- <div class="mat-body-1">
+                                <mat-icon color="accent" class="statusIcon" *ngIf="isContractDone">thumb_up</mat-icon>
+                                <mat-icon color="warn" class="statusIcon" *ngIf="!isContractDone">thumb_down</mat-icon>
+                                <span *ngIf="isContractDone"> 
+                                        Contract details are stored.
+                                </span>
+                                <span *ngIf="!isContractDone"> 
+                                        Contract details are pending.
+                                </span>
+                        </div> -->
+
+                        <div class="mat-body-1">
+                                <span> 
+                                        Contract details can be viewed or 
+                                        <br/>updated here.
+                                </span>
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" id="gotoContactDetails" (click)="gotoContract()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button> -->
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card>
+        
+        <mat-card class="tenant-card text-center">
+                <mat-card-header>
+                        <mat-card-title>Finance</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">
+                                <span> 
+                                        Finance details of hospital can be 
+                                        <br/> viewed or updated here.
+                                </span>
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" id="gotoFinance" (click)="gotoFinance()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button> -->
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card>
+
+        <mat-card class="tenant-card text-center">
+                <mat-card-header>
+                        <mat-card-title>Address</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">
+                                <span> 
+                                        Address details of hospital and 
+                                        <br/>admin can be 
+                                        <br/> viewed or updated here.
+                                </span>
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" id="gotoAddressAccount" (click)="gotoAddressAccount()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button> -->
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card>
+
+        <mat-card class="tenant-card text-center">
+                <mat-card-header>
+                        <mat-card-title>Contact Details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">
+                                <span> 
+                                        Contact details of hospital can be 
+                                        <br/> viewed or updated here.
+                                </span>
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" id="gotoContactDetails" (click)="gotoContactDetails()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button> -->
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card>
+
+        <mat-card class="tenant-card text-center">
+                <mat-card-header>
+                        <mat-card-title>Admin Details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">
+                                <span> 
+                                        Admin user details of hospital can be 
+                                        <br/> viewed or updated here.
+                                </span>
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" id="gotoAdminAccount" (click)="gotoAdminAccount()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button> -->
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card>
+         <mat-card class="tenant-card text-center">
+                <mat-card-header>
+                        <mat-card-title>Client Details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">
+                                <span> 
+                                        Client  details of hospital can be 
+                                        <br/> viewed or updated here.
+                                </span>
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" id="gotoClientDetails" (click)="gotoClientDetails()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button> -->
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card>
+
+</div>
+
+<!-- <app-loader *ngIf="clientData?.loading"></app-loader> -->

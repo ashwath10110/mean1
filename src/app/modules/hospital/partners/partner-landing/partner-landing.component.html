@@ -1,0 +1,141 @@
+<p-breadcrumb [model]="breadCrumbs" *ngIf="breadCrumbs.length"></p-breadcrumb>
+
+<div fxLayout="row wrap" fxLayoutAlign="start start" *ngIf="!stocks?.loading">
+    <mat-card class="tenant-card">
+            <mat-card-header>
+                    <mat-card-title>
+                                <mat-icon color="accent" class="statusIcon">person_pin</mat-icon>    
+                        Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                    <!-- <div class="mat-body-1">
+                            
+                            <mat-icon color="accent" class="statusIcon" *ngIf="isDetailsDone">thumb_up</mat-icon>
+                            <mat-icon color="warn" class="statusIcon" *ngIf="!isDetailsDone">thumb_down</mat-icon>
+                            <span *ngIf="isDetailsDone"> 
+                                    Partner details are stored.
+                            </span>
+                            <span *ngIf="!isDetailsDone"> 
+                                    Partner details are pending.
+                            </span>
+                    </div> -->
+            </mat-card-content>
+            <mat-card-actions align="end">
+                    <button mat-icon-button type="button" (click)="gotoAdminAccount()">
+                            <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                    </button>
+            </mat-card-actions>
+            <mat-card-footer></mat-card-footer>
+        </mat-card>
+
+        <mat-card class="tenant-card">
+                <mat-card-header>
+                        <mat-card-title>
+                                        <mat-icon color="accent" class="statusIcon">place</mat-icon>Address Details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <!-- <div class="mat-body-1">
+                                <mat-icon color="accent" class="statusIcon" *ngIf="isAddressDone">thumb_up</mat-icon>
+                                <mat-icon color="warn" class="statusIcon" *ngIf="!isAddressDone">thumb_down</mat-icon>
+                                <span *ngIf="isAddressDone"> 
+                                        Partner Address details are stored.
+                                </span>
+                                <span *ngIf="!isAddressDone"> 
+                                        Partner Address details are pending.
+                                </span>
+                        </div> -->
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" (click)="gotoAddress()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+            </mat-card>
+
+            <mat-card class="tenant-card" *ngIf="partnerRole === 'ASSOCIATE'">
+                        <mat-card-header>
+                                <mat-card-title>
+                        <mat-icon color="accent" class="statusIcon">supervised_user_circle</mat-icon>
+                                        Contact Person Details</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                                <div class="mat-body-1">
+                                                
+                                     <!--    <mat-icon color="accent" class="statusIcon" *ngIf="isContactsDone">thumb_up</mat-icon>
+                                        <mat-icon color="warn" class="statusIcon" *ngIf="!isContactsDone">thumb_down</mat-icon>
+                                        <span *ngIf="isContactsDone"> 
+                                                Partner  Contact Person details are stored.
+                                        </span>
+                                        <span *ngIf="!isContactsDone"> 
+                                                Partner Contact Person details are pending.
+                                        </span>
+                                </div> -->
+                                </div>
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                                <button mat-icon-button type="button" (click)="gotoContacts()">
+                                        <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                                </button>
+                        </mat-card-actions>
+                        <mat-card-footer></mat-card-footer>
+                    </mat-card>
+
+        <mat-card class="tenant-card">
+                <mat-card-header>
+                        <mat-card-title>
+                                        <mat-icon color="accent" class="statusIcon">money</mat-icon>
+                                Finance</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">
+                                <!-- <mat-icon color="accent" class="statusIcon" *ngIf="isFinanceDone">thumb_up</mat-icon>
+                                <mat-icon color="warn" class="statusIcon" *ngIf="!isFinanceDone">thumb_down</mat-icon>
+                                <span *ngIf="isFinanceDone"> 
+                                        Finance details are stored.
+                                </span>
+                                <span *ngIf="!isFinanceDone"> 
+                                        Finance details are pending.
+                                </span> -->
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" (click)="gotoFinance()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button> -->
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card>
+
+        <!-- <mat-card class="tenant-card" *ngIf = "partnerRole == 'ASSOCIATE'">
+                <mat-card-header>
+                        <mat-card-title>Contact</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">
+                                <mat-icon color="accent" class="statusIcon" *ngIf="isAdminAccountDone">thumb_up</mat-icon>
+                                <mat-icon color="warn" class="statusIcon" *ngIf="!isAdminAccountDone">thumb_down</mat-icon>
+                                <span *ngIf="isContactDone"> 
+                                        Contact details are stored.
+                                </span>
+                                <span *ngIf="!isContactDone"> 
+                                        Account details are pending.
+                                </span>
+                        </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-icon-button type="button" (click)="gotoContract()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                        <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button> -->
+                <!-- </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card> -->
+
+
+</div>

@@ -1,0 +1,20 @@
+@import '../../../assets/styles/variable.scss';
+
+.new-contact{
+    @extend .mat-elevation-z4;
+    background-color: white;
+    padding: 1rem;
+    padding-bottom: 0;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+}
+.title{
+    margin-bottom: 0;
+}
+.phone-icon{
+    position: absolute;
+    color: $primary;
+}
+.number{
+    margin-left: 2rem;
+}

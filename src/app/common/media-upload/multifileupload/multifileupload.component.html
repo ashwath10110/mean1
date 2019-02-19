@@ -1,0 +1,58 @@
+<form [formGroup]="documentGrp" (ngSubmit)="OnSubmit(documentGrp.value)" #uploadDocumentsForm="ngForm" ngNativeValidate>
+  <table mat-card class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>Document Type</th>
+        <th>Document Name</th>
+        <th>Document File</th>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <mat-form-field>
+              <mat-select placeholder="Category" formControlName="attachmentType">
+                <mat-option *ngFor="let category of fileTypes" [value]="category.name">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-label>Document Name</mat-label>
+            <input matInput formControlName="tag">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-radio-group formControlName="doc_count">
+            <mat-radio-button value="SINGLE" style="margin-right:10px;">
+              Single
+            </mat-radio-button>
+            <mat-radio-button value="MULTIPLE">
+              Multiple
+            </mat-radio-button>
+          </mat-radio-group>
+
+          <div class="" *ngIf="documentGrp.get('doc_count').value === 'MULTIPLE'">
+            <mat-checkbox id="shouldMerge" class="shouldMerge" color="primary" formControlName="shouldMerge">Do
+              you want to Merge
+            </mat-checkbox>
+            <input type="file" id="file" multiple (change)="detectFiles($event)" accept="image/x-png,image/jpeg,application/pdf,application/msword">
+            <div class="help-block"></div>
+          </div>
+          <div class="" *ngIf="documentGrp.get('doc_count').value === 'SINGLE'">
+            <input type="file" id="file" single (change)="detectFiles($event)" accept="image/x-png,image/jpeg,application/pdf,application/msword">
+            <div class="help-block"></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="align-content: center" fxLayout="row" fxLayoutAlign="space-around center" fxGap="30px">
+    <button mat-raised-button color="primary" class="pull-right" type="submit" [disabled]="!documentGrp.valid">Upload</button>
+  </div>
+</form>
+
+<app-loader *ngIf="loading"></app-loader>

@@ -1,0 +1,12 @@
+<span mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  Attachment Details
+  <button mat-icon-button color="accent" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</span>
+
+<div mat-dialog-content>
+  <app-multifileupload [maxSizeInKb]="maxSizeInKb" [tenantId]="tenantId" [fileTypes]="fileTypes" [acceptIds]="acceptIds"
+    [attachmentIds]="attachmentIds" (updates)="handleFileUpload($event)">
+  </app-multifileupload>
+</div>

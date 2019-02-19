@@ -1,0 +1,16 @@
+<span class="page-title mat-display-1">Unit Finance</span>
+
+<p-breadcrumb *ngIf="breadCrumbs.length > 0" [model]="breadCrumbs"></p-breadcrumb>
+
+<app-approval-changes *ngIf="showApproveButton" [approvalComments]="approvalComments"></app-approval-changes>
+
+<mat-card class="content">
+    <app-finance [financeData]="clientFinanceData" (validStatus)="handleFormStatusChanges($event)" #clientFinance></app-finance>
+    <div align="center" style="padding-bottom: 20px">
+        <button mat-raised-button color="primary" *ngIf="showApproveButton" (click)="updateUnitFinance()" >Approve Unit Finance</button>
+        <button mat-raised-button color="primary" *ngIf="!showApproveButton" (click)="updateUnitFinance()" >Update Unit Finance</button>
+    </div>
+    <div align="center" style="padding-bottom: 20px">
+            <button mat-raised-button color="primary" *ngIf="showApproveButton" (click)="rejectApproval()" >Reject Unit Finance</button>
+    </div>
+</mat-card>

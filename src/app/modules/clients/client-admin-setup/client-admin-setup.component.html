@@ -1,0 +1,64 @@
+<span class="page-title mat-display-1">Admin Account Setup</span>
+<p-breadcrumb [model]="breadCrumbs"></p-breadcrumb>
+<mat-card class="content">
+  <form id="adminForm" fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="AdminUserFormGroup" (ngSubmit)="onSubmitClientUser(AdminUserFormGroup)">
+    <mat-form-field style="margin-top:10px;padding-left:5px;">
+      <input id="username" matInput placeholder="User Name" [attr.disabled]="AdminUserFormGroup?.get('status')?.value === 'ACTIVE'" formControlName="username" required>
+      <mat-error>
+        <span *ngIf="AdminUserFormGroup?.controls.username?.errors?.required"> User Name is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input id="firstName" matInput placeholder="First Name" formControlName="firstName" required>
+      <mat-error>
+        <span *ngIf="AdminUserFormGroup?.controls.firstName?.errors?.required"> First Name is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input id="middleName" matInput placeholder="Middle Name" formControlName="middleName">
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input id="lastName" matInput placeholder="Last Name" formControlName="lastName" required>
+      <mat-error>
+        <span *ngIf="AdminUserFormGroup?.controls.lastName?.errors?.required"> Last Name is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input id="primaryPhone" matInput placeholder="Primary Phone" formControlName="primaryPhone" required>
+       <mat-error>
+        <span *ngIf="AdminUserFormGroup?.controls.primaryPhone?.errors?.required">  primaryPhone is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input id="alternatePhone" matInput placeholder="Alternate Phone" formControlName="alternatePhone">
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input id="email" matInput placeholder="Email" [attr.disabled]="AdminUserFormGroup?.get('status')?.value === 'ACTIVE'" formControlName="email" required>
+      <mat-error>
+        <span *ngIf="AdminUserFormGroup?.controls.email?.errors?.required">  Email is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input id="designation" matInput placeholder="Designation" formControlName="designation" required>
+      <mat-error>
+        <span *ngIf="AdminUserFormGroup?.controls.designation?.errors?.required">  Designation is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input id="reportsTo" matInput placeholder="reportsTo" formControlName="reportsTo" required>
+      <mat-error>
+        <span *ngIf="AdminUserFormGroup?.controls.reportsTo?.errors?.required">  reportsTo is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <div class="actions" fxFlex="98" flexLayout="row" flexLayoutAlign="center center">
+      <button id="updateClientAdmin" mat-raised-button color="primary" type="submit" [disabled]="!AdminUserFormGroup.valid">Update</button>
+    </div>
+  </form>
+</mat-card>

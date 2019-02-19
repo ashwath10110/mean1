@@ -1,0 +1,21 @@
+.white-bg {
+  background: #fff;
+  padding: 10px;
+}
+
+.table_fix_h {
+  height: 350px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+
+.selectedDeptList ul{
+  height: 180px;
+  display: flex;
+  flex-flow: column wrap;
+  margin-bottom: 0px;
+}
+
+.selectedDeptList ul li{
+  padding: 5px;
+}

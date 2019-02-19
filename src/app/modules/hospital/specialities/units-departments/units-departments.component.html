@@ -1,0 +1,82 @@
+<div class="specialitiesListPage" *ngIf="!showApproveButton">
+
+  <span class="page-title mat-display-1">Specialities</span>
+
+  <p-breadcrumb [model]="breadCrumbs" *ngIf="breadCrumbs.length"></p-breadcrumb>
+
+  <app-department-list
+    [departmentsList]="state?.currentClientDepartments"
+    (deleteDepartment)="handleDeleteDepartment($event)">
+  </app-department-list>
+
+  <mat-card>
+    <mat-card-content >
+
+      <div *ngIf="selectedSpecialities?.length">
+        No of Selected Specialities: {{selectedSpecialities.length}}
+      </div>
+      
+      <p-tree *ngIf="!showApproveButton" [value]="state?.masterSpecializations" selectionMode="checkbox" [(selection)]="state.currentUnitDepartments"></p-tree>
+      <p-tree *ngIf="showApproveButton" [value]="state?.masterSpecializations" selectionMode="checkbox" [(selection)]="approvalspecs"></p-tree>
+
+      <br/>
+      <!-- <div align="center" *ngIf="showApproveButton" style="padding-bottom: 20px">
+        <button mat-raised-button color="primary"  (click)="saveDepartments(approvalspecs)" type="submit">Approve Specializations</button>
+      </div> -->
+      <!-- <div align="center" *ngIf="showRejectButton" style="padding-bottom: 20px">
+        <button mat-raised-button color="primary"  type="button">Reject Specializations</button>
+      </div> -->
+      <div align="center" *ngIf="!showApproveButton">
+        <button mat-raised-button color="accent" type="button" (click)="saveDepartments(state?.currentUnitDepartments)" [disabled]="!state?.currentUnitDepartments.length">
+          Setup Specialities
+      </button>
+      </div>
+      <!-- <button (click)="proceedToUsers()">proceedToUsers</button> -->
+    </mat-card-content>
+  </mat-card>
+
+  <!-- <app-loader *ngIf="state?.loading"></app-loader> -->
+
+</div>
+
+
+<div class="specialitiesListPage" *ngIf="showApproveButton">
+
+  <span class="page-title mat-display-1">Specialities</span>
+
+  <!-- <p-breadcrumb [model]="breadCrumbs" *ngIf="breadCrumbs.length"></p-breadcrumb> -->
+<mat-card>
+<mat-card-header >Existing Specialities</mat-card-header>
+<mat-card-content >
+  <app-department-list
+  [departmentsList]="state?.currentClientDepartments"
+  (deleteDepartment)="handleDeleteDepartment($event)">
+ </app-department-list>
+</mat-card-content >
+<mat-card-header >Updated list of Specialities</mat-card-header>
+<mat-card-content >
+  <app-department-list
+    [departmentsList]="selectedApproval"
+    (deleteDepartment)="handleDeleteDepartment($event)">
+  </app-department-list>
+</mat-card-content>
+</mat-card>
+  <mat-card>
+    <mat-card-content >
+      <div *ngIf="selectedApproval?.length">
+        No of Selected Specialities: {{selectedApproval?.length}}
+      </div>
+      <p-tree *ngIf="showApproveButton" [value]="state?.masterSpecializations" selectionMode="checkbox" [(selection)]="selectedApproval"></p-tree>
+      
+      <div align="center" *ngIf="showApproveButton" style="padding-bottom: 20px">
+        <button mat-raised-button color="primary"  (click)="saveDepartments(selectedApproval)" type="submit">Approve Specializations</button>
+      </div> 
+
+       <div align="center" *ngIf="showApproveButton" style="padding-bottom: 20px">
+        <button mat-raised-button color="primary" (click)="rejectApproval()"  type="button">Reject Specializations</button>
+      </div>
+      <br/>    
+     
+    </mat-card-content>
+  </mat-card>
+</div>

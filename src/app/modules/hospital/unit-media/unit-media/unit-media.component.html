@@ -1,0 +1,32 @@
+<div *ngIf="!showApproveButton">
+    <p-breadcrumb [model]="breadCrumbs"></p-breadcrumb>
+
+    <mat-card class="content">
+        <app-media-container [tenantId]="tenantId" [fileTypes]="fileTypes" [attachmentIds]="attachmentIds" (updates)="handleFileUpload($event)">
+        </app-media-container>
+
+        <br />
+
+        <app-loader *ngIf="state?.loading"></app-loader>
+
+    </mat-card>
+</div>
+<div *ngIf="showApproveButton">
+
+    <app-approval-changes *ngIf="showApproveButton" [approvalComments]="approvalComments"></app-approval-changes>
+    
+    <mat-card class="content">
+        <app-media-container [tenantId]="tenantId" [fileTypes]="fileTypes" [attachmentIds]="attachmentIds" (updates)="handleFileUpload($event)">
+        </app-media-container>
+
+        <br />
+
+        <app-loader *ngIf="state?.loading"></app-loader>
+        <div align="center" *ngIf="showApproveButton" style="padding-bottom: 20px" >
+            <button mat-raised-button color="primary" type="button" (click)="approveApproval($event)" >Approve Changes</button>
+        </div>
+        <div align="center" *ngIf="showApproveButton" style="padding-bottom: 20px" >
+            <button mat-raised-button color="primary" type="button" (click)="rejectApproval()" >Reject Changes</button>
+        </div>
+    </mat-card>
+</div>

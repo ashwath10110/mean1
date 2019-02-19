@@ -1,0 +1,42 @@
+
+<div class="header-container">
+    <div style= "float: left; font-size: 16px;
+        padding: 10px;">Welcome {{user.firstName}}</div>
+
+    <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-10" style ="outline: 0;">
+            <span  style="font-size: 24px; color: white;">
+                <i class="fa fa-user-circle" style="vertical-align: middle;"></i></span>
+    </button>
+
+    <div></div>
+    <mat-menu #profile="matMenu" yPosition = 'below'>
+            <button mat-menu-item class="menu-item-style">
+                    <mat-icon>settings</mat-icon> Settings 
+            </button>
+            <button mat-menu-item (click)="onClickProfile($event)" class="menu-item-style" >
+                    <mat-icon>account_box</mat-icon> Profile </button>
+                <button mat-menu-item class="menu-item-style">
+                    <mat-icon>notifications_off</mat-icon> Disable notifications </button>
+                <button mat-menu-item (click)="logout($event)" class="menu-item-style">
+                    <mat-icon>exit_to_app</mat-icon> Sign Out </button>
+    </mat-menu>
+</div>
+
+
+<!-- <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5"> 
+
+    <span  style="font-size: 25px; color: black;"><i class="fa fa-user-circle"></i></span>
+     </button> 
+<mat-menu #profile="matMenu" class="mymegamenu">
+    <button mat-menu-item>
+        <mat-icon>settings</mat-icon> Settings </button>
+    <button mat-menu-item (click)="onClickProfile($event)">
+        <mat-icon>account_box</mat-icon> Profile </button>
+    <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon> Disable notifications </button>
+    <button mat-menu-item (click)="logout($event)">
+        <mat-icon>exit_to_app</mat-icon> Sign Out </button>
+</mat-menu> -->
+
+
+    <!-- <img src="assets/images/users/1.png" alt="user" class="profile-pic">-->

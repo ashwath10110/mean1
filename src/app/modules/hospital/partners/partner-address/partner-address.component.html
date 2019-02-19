@@ -1,0 +1,32 @@
+
+<span class="page-title mat-display-1">Partner Address</span>
+<app-approval-changes *ngIf="showApproveButton" [approvalComments]="approvalComments"></app-approval-changes>
+<p-breadcrumb [model]="breadCrumbs"  *ngIf="!showApproveButton" ></p-breadcrumb>
+
+<mat-card class="content">
+  <form fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="partnerAddressFormGroup" (ngSubmit)="onSubmitAddressData(partnerAddressFormGroup)">
+
+    <app-address [address]="address" [locationId]="locationId" fxFlex="98" #AddressComponent (addressChange)="handleAddressChanges($event)"></app-address>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Business Email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Primary Phone" formControlName="primaryPhone" required>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Website" formControlName="website">
+    </mat-form-field>
+
+    <div align="center" style="padding-bottom: 20px">
+      <button mat-raised-button color="primary" *ngIf="showApproveButton" [disabled]="!((partnerAddressFormGroup.valid) && (AddressComponent.isValid))" type="submit" >Approve details</button>
+      <button mat-raised-button color="primary" *ngIf="showApproveButton" type="button" (click)="rejectApproval()" style="margin: 10px;">Reject details</button>
+      <button mat-raised-button color="primary" *ngIf="!showApproveButton" [disabled]="!((partnerAddressFormGroup.valid) && (AddressComponent.isValid))" type="submit">Update Partner Contact Details</button>
+    </div>
+  </form>
+
+  <!-- <button (click)="proceedToFinance()">proceedToFinance</button> -->
+
+</mat-card>

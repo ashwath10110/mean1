@@ -1,0 +1,58 @@
+
+.toggle-children-wrapper-collapsed .toggle-children{
+    margin-bottom: -5px;
+}
+.nav-item{
+    padding: 0.5rem;
+    cursor: pointer;
+    // border-bottom: 1px solid white;
+    // box-shadow: 0px 5px 20px #888!important;  
+    // -webkit-box-shadow: 0px 5px 20px #888!important; 
+    background-color: white;
+    &:hover{
+        background-color: $primary;
+        span, mat-icon { color: white;}
+    }
+    &:active{
+        border-left: 2px solid white;
+        background-color: #26c6da;
+        border-radius: 4px;
+    }
+    mat-icon{
+        margin-right: 0.5rem;
+    }
+}
+.nav-item-active{
+    a, span, mat-icon { color: white;  background-color: #26c6da ;}
+    
+}
+#snav .mat-list-item:hover{
+    background-color: $primary;
+}
+.action-button{
+    margin-top: -20px !important;
+}
+.page-title{
+    margin-bottom: 1rem !important;
+}
+.node-content-wrapper{
+    // padding-left: 1rem !important;
+    // padding-top: 0.5rem !important;
+    margin-left: 0.5rem !important;
+}
+
+.orgTreeStructure .node-content-wrapper {
+    border-radius: 20px !important;
+    padding: 10px !important;
+}
+
+.toggle-children-wrapper{
+    padding-right: 0 !important;
+}
+th {
+    color: $primary;
+    font-weight: 500;
+}
+body .ui-selectbutton .ui-button{
+    border:none !important;
+}

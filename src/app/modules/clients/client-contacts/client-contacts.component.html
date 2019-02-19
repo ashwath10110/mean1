@@ -1,0 +1,19 @@
+<span class="page-title mat-display-1">Contact Details</span>
+
+<p-breadcrumb [model]="breadCrumbs"></p-breadcrumb>
+
+<mat-card class="content">
+
+    <form fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <!-- <anms-phone-contacts [(contacts)]="contactDetails" (contactsChange)="handleContactsChange($event)"></anms-phone-contacts> -->
+        <anms-contact-details 
+        fxFlex="100" 
+        fxLayout="column wrap" 
+        [(contacts)] = "contactDetails" 
+        (contactsChange)="handleContactsChange($event)"
+        (removeContact)="handleRemoveContact($event)"
+        ></anms-contact-details>
+        <button mat-raised-button color="primary" (click)="proceedFromContacts()">Continue</button>
+    </form>
+
+</mat-card>

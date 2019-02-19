@@ -1,0 +1,213 @@
+<div>
+        <span class="page-title mat-display-1">Summary</span>
+        <p-breadcrumb [model]="breadcrumbs" *ngIf="breadcrumbs.length"></p-breadcrumb>
+        <div fxLayout="row wrap" fxLayoutAlign="start start" *ngIf="!tenantLevelData?.loading">
+                <mat-card class="tenant-card">
+                        <mat-card-header>
+                                <mat-card-title>Specialities</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                                <div class="mat-body-1">Total</div>
+                                <div class="mat-body-2">{{tenantLevelData?.currentClientDepartments?.length}}</div>
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                                <!--<button mat-icon-button type="button" (click)="addSpecialities()">
+                                <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                        </button>-->
+                                <button mat-icon-button type="button" (click)="gotoSpecialities()">
+                                        <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                                </button>
+                                <!-- <button mat-icon-button type="button">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                        </mat-card-actions>
+                        <mat-card-footer></mat-card-footer>
+                </mat-card>
+                <mat-card class="tenant-card">
+                        <mat-card-header>
+                                <mat-card-title>Doctors</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                                <!-- <div class="mat-body-1">Total</div>
+                                <div class="mat-body-2">{{tenantLevelData?.currentClientDoctors?.length}}</div> -->
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                                <!-- <button mat-icon-button type="button" (click)="addDoctors()">
+                                <mat-icon aria-hidden="true" color="primary">add</mat-icon>
+                        </button> -->
+                                <button mat-icon-button type="button" (click)="gotoDoctors()">
+                                        <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                                </button>
+                                <!-- <button mat-icon-button type="button">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                                <!-- <button mat-icon-button type="button" (click)="addDoctors()">
+                                <mat-icon aria-hidden="true" color="primary"></mat-icon>
+                        </button> -->
+                                <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                        </mat-card-actions>
+                        <mat-card-footer></mat-card-footer>
+                </mat-card>
+                <mat-card class="tenant-card">
+                        <mat-card-header>
+                                <mat-card-title>Details</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                                <!-- <div class="mat-body-1">{{card.description}}</div> -->
+                                <!-- <div class="mat-body-2">Type: <i>{{card.val}}</i></div> -->
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                                <!-- <button mat-icon-button type="button" (click)="addDoctors()">
+                                <mat-icon aria-hidden="true" color="primary">add</mat-icon>
+                        </button> -->
+                                <button mat-icon-button type="button" (click)="gotoDetails()">
+                                        <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                                </button>
+                                <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                        </mat-card-actions>
+                        <mat-card-footer></mat-card-footer>
+                </mat-card>
+                <mat-card class="tenant-card">
+                        <mat-card-header>
+                                <mat-card-title>Address Details</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                                <!-- <div class="mat-body-1">{{card.description}}</div> -->
+                                <!-- <div class="mat-body-2">Type: <i>{{card.val}}</i></div> -->
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                                <!-- <button mat-icon-button type="button" (click)="addDoctors()">
+                                <mat-icon aria-hidden="true" color="primary">add</mat-icon>
+                        </button> -->
+                                <button mat-icon-button type="button" (click)="gotoAddressDetails()">
+                                        <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                                </button>
+                                <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                        </mat-card-actions>
+                        <mat-card-footer></mat-card-footer>
+                </mat-card>
+                <mat-card class="tenant-card">
+                                <mat-card-header>
+                                        <mat-card-title>Finance</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                        <!-- <div class="mat-body-1">Total</div>
+                                        <div class="mat-body-2">{{tenantLevelData?.currentClientDoctors?.length}}</div> -->
+                                </mat-card-content>
+                                <mat-card-actions align="end">
+                                        <button mat-icon-button type="button" (click)="gotoFinance()">
+                                                <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                                        </button>
+                                </mat-card-actions>
+                                <mat-card-footer></mat-card-footer>
+                        </mat-card>
+                <mat-card class="tenant-card">
+                        <mat-card-header>
+                                <mat-card-title>Users</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                                <!-- <div class="mat-body-1">{{card.description}}</div> -->
+                                <!-- <div class="mat-body-2">Type: <i>{{card.val}}</i></div> -->
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                                <!-- <button mat-icon-button type="button" (click)="addDoctors()">
+                                <mat-icon aria-hidden="true" color="primary">add</mat-icon>
+                        </button> -->
+                                <button mat-icon-button type="button" (click)="gotoUnitUsers()">
+                                        <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                                </button>
+                                <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                        </mat-card-actions>
+                        <mat-card-footer></mat-card-footer>
+                </mat-card>
+                <mat-card class="tenant-card">
+                        <mat-card-header>
+                                <mat-card-title>Media</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                                <!-- <div class="mat-body-1">{{card.description}}</div> -->
+                                <!-- <div class="mat-body-2">Type: <i>{{card.val}}</i></div> -->
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                                <button mat-icon-button type="button" (click)="goToUnitMedia()">
+                                        <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                                </button>
+                                <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                        </mat-card-actions>
+                        <mat-card-footer></mat-card-footer>
+                </mat-card>
+                <mat-card class="tenant-card">
+                        <mat-card-header>
+                                <mat-card-title>Partners</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                                <!-- <div class="mat-body-1">{{card.description}}</div> -->
+                                <!-- <div class="mat-body-2">Type: <i>{{card.val}}</i></div> -->
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                                <button mat-icon-button type="button" (click)="goToPartner()">
+                                        <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                                </button> 
+                                <!-- <button mat-icon-button type="button" (click)="addDoctors()">
+                                <mat-icon aria-hidden="true" color="primary">add</mat-icon>
+                        </button> -->
+                                <!-- <button mat-icon-button type="button" color="warn">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> -->
+                        
+                        </mat-card-actions>
+                        <mat-card-footer></mat-card-footer>
+                </mat-card>
+                <!-- <mat-card class="tenant-card">
+                <mat-card-header>
+                        <mat-card-title>Contacts</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <div class="mat-body-1">Total</div>
+                        <div class="mat-body-2">{{tenantLevelData?.currentUnitContacts?.length}}</div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                       <button mat-icon-button type="button" (click)="addUnitContacts()">
+                                <mat-icon aria-hidden="true" color="primary">add</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button" (click)="gotoUnitContacts()">
+                                <mat-icon aria-hidden="true" color="primary">visibility</mat-icon>
+                        </button>
+                       <button mat-icon-button type="button" (click)="editUnitContacts()">
+                                <mat-icon aria-hidden="true" color="primary">edit</mat-icon>
+                        </button> 
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+        </mat-card> -->
+        </div>
+
+        <app-loader *ngIf="tenantLevelData?.loading"></app-loader>
+</div>

@@ -1,0 +1,79 @@
+@import '../../../../assets/styles/variable.scss';
+
+.mat-icon {
+  vertical-align: -10px
+}
+
+h3 {
+  margin: 0;
+  padding-left: 5px;
+}
+
+.isFunctional {
+  color: green;
+}
+
+.isNotFunctional {
+  color: red;
+}
+
+.node-name {
+  margin: 0;
+  color: $accent;
+}
+
+.head-wrapper {
+  min-width: 500px;
+  margin-bottom: 1rem;
+}
+
+.height120 {
+  height: 140px;
+}
+
+.w480 {
+  width: 640px;
+}
+
+.borderB2px {
+  border-bottom: 2px solid lightgrey;
+}
+
+.borLt2px {
+  border-left: 2px solid lightgrey;
+}
+
+.padLeft10 {
+  padding-left: 10px
+}
+
+.height80 {
+  height: 90px;
+}
+
+.repos {
+  display: flex;
+  bottom: 18px;
+  left: 10px;
+}
+
+.btnRepos button mat-icon {
+  position: relative;
+  top: -3px
+}
+
+.specialitiesBtn {
+  margin-right: 20px !important;
+}
+
+.btmBtns button mat-icon {
+  top: 0px
+}
+
+.btmBtns button.mat-button {
+  line-height: 10px;
+}
+
+.btmBtns {
+  padding-top: 10px;
+}

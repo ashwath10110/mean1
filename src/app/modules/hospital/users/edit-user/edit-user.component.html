@@ -1,0 +1,165 @@
+<app-approval-changes *ngIf="showApproveButton" [approvalComments]="approvalComments"></app-approval-changes>
+
+<span mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  User Details
+  <button mat-icon-button color="accent" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</span>
+
+<div mat-dialog-content>
+  <form fxLayout="row wrap" fxLayoutAlign="space-around" [formGroup]="userForm" (ngSubmit)="onUserFormSubmit(userForm)">
+    <mat-form-field>
+      <input matInput placeholder="User Name" formControlName="username" required [attr.disabled]="isDisabled? 'true': null">
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput placeholder="First Name" formControlName="firstName" required>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput placeholder="Middle Name" formControlName="middleName">
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput placeholder="Last Name" formControlName="lastName" required>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput placeholder="Primary Phone" formControlName="primaryPhone" required>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput placeholder="Alternate Phone" formControlName="alternatePhone">
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput placeholder="Email" formControlName="email" required [attr.disabled]="isDisabled? true: null">
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput placeholder="Designation" formControlName="designation" required>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="48">
+      <input matInput placeholder="reportsTo" formControlName="reportsTo" required>
+    </mat-form-field>
+
+    <div fxFlex="100" formArrayName="rolesAndScopes" *ngFor="let item of rolesAndScopes.controls; let i = index;">
+      <div class="scopeRoleMapper" [formGroupName]="i" fxFlex="99">
+        <mat-form-field fxFlex="48">
+          <mat-label>Unit</mat-label>
+          <mat-select formControlName="unit" required>
+            <mat-option *ngFor="let unit of unitsList" [value]="unit">
+              {{unit.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlex="2"></div>
+        <mat-form-field fxFlex="48">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="roles" multiple required>
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{role}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button fxFlex="2"  type="button" (click)="deleteRow(item, i)" mat-icon-button style="vertical-align: bottom; padding: 5px;">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div fxFlex="98" class="text-center">
+      <button mat-raised-button color="primary" type="button" (click)="addRow()" *ngIf="unitsList?.length>1">Map to More Units</button>
+      <br/>
+      <br/>
+      <button mat-raised-button color="primary" type="submit" *ngIf="!showApproveButton" [disabled]="!userForm.valid">Save User</button>
+      <br/>
+      <button mat-raised-button color="primary" type="submit" *ngIf="showApproveButton">Approve User</button>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <button mat-raised-button color="primary" type="button" (click)="rejectChanges()" *ngIf="showApproveButton">Reject Changes</button>
+    </div>
+  </form>
+  <button mat-raised-button (click)="loadDummyValidData()">Dummy</button>
+</div>
+<app-loader *ngIf="state?.loading"></app-loader>
+
+
+<!-- <app-loader *ngIf="stock?.loading"></app-loader>
+<span mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+    User Details
+    <button mat-icon-button color="accent" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </span>
+<div mat-dialog-content>
+    <form fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="usersFormGroup" (ngSubmit)="onSubmitUser(usersFormGroup)">
+     <mat-form-field>
+        <input matInput placeholder="User Name" formControlName="username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password" required>
+      </mat-form-field>
+      <mat-form-field fxFlex="48">
+        <input matInput placeholder="First Name" formControlName="firstName" required>
+      </mat-form-field>
+      <mat-form-field fxFlex="48">
+        <input matInput placeholder="Middle Name" formControlName="middleName">
+      </mat-form-field>
+      <mat-form-field fxFlex="48">
+        <input matInput placeholder="Last Name" formControlName="lastName" required>
+      </mat-form-field>
+      <mat-form-field  fxFlex="48">
+          <input matInput placeholder="Primary Phone" formControlName="primaryphone" required>
+        </mat-form-field> 
+        <mat-form-field  fxFlex="48">
+          <input matInput placeholder="Alternate Phone" formControlName="alternatephone">
+        </mat-form-field>
+        <mat-form-field  fxFlex="48">
+          <input matInput placeholder="Email" formControlName="email" required>
+        </mat-form-field>
+      <mat-checkbox formControlName="addToUnit">Add user to hospital unit?</mat-checkbox>
+      <mat-form-field fxFlex="42" >
+        <mat-label>Scope</mat-label>
+        <mat-select #fontSize value="Viewer" formControlName="userScope" required>
+          <mat-option *ngFor="let unit of unitsList" [value]="unit.id">
+            {{unit.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> 
+      <mat-form-field fxFlex="42" >
+          <mat-label>User Role</mat-label>
+          <mat-select #fontSize value="Viewer" formControlName="userRole" required>
+            <mat-option value="Manager">Manager</mat-option>
+            <mat-option value="Author">Author</mat-option>
+            <mat-option value="Feeder">Feeder</mat-option>
+            <mat-option value="Approver">Approver</mat-option>
+            <mat-option value="Viewer">Viewer</mat-option>
+            <mat-option value="Listed">Listed</mat-option>
+          </mat-select>
+      </mat-form-field> 
+      <mat-button-toggle fxFlex="6" formControlName="addScopeRole" (click)="onValChange($event, usersFormGroup)" >
+          <i class="fa fa-plus" style="color:#455A64" aria-hidden="true"></i>
+      </mat-button-toggle>
+      <mat-form-field fxFlex="48" >
+        <mat-select #fontSize value="Multiple" placeholder="Designation"  formControlName="designation" required>
+          <mat-option value="assistant">Assistant</mat-option>
+          <mat-option value="clerk">Clerk</mat-option>
+          <mat-option value="manager">Assistant</mat-option>
+          <mat-option value="admin">Admin</mat-option>
+          <mat-option value="headassistant">Head Assistant</mat-option>
+          <mat-option value="receptionist">Receptionist</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field  fxFlex="48" >
+          <input matInput placeholder="reportsTo" formControlName="reportsTo" required>
+      </mat-form-field>
+    
+      <div class="text-center">
+        <button mat-raised-button color="primary" *ngIf="data.status === 'new'" type="submit">Create User</button>
+        <button mat-raised-button color="primary" *ngIf="data.status === 'edit'" type="submit">Update User</button>
+      </div>
+    </form>
+  </div>
+  
+  <app-loader *ngIf="stock?.loading"></app-loader>
+   -->

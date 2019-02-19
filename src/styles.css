@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.node-content-wrapper, .tree-children {
+    position: relative;
+  }
+
+  .node-content-wrapper::before, .tree-children::after {
+    content: "";
+    position: absolute;
+  }
+  
+  .node-content-wrapper::before {
+    /* border-bottom: 1px solid rgb(112, 66, 66);
+    border-left: 1px solid rgb(105, 53, 53); */
+    height: 28px;
+    top: -17px;
+    width: 20px;
+    left: -28px;
+  }
+  
+  .tree-node-level-1 > tree-node-wrapper > .node-wrapper > .node-content-wrapper::before {
+    display: none;
+  }
+  
+  .tree-node-leaf > .node-wrapper > .node-content-wrapper::before {
+    width: 25px;
+  }
+  
+  .tree-children::after {
+    border-left: 1px solid rgb(175, 5, 5);
+    height: 100%;
+    top: -15px;
+    left: -15px;
+  }
+  
+  tree-node:last-child > .tree-node > .tree-children::after {
+    border-left: none;
+  }
+  
+  /* .node-content-wrapper{
+    border-radius: 5px;
+    padding: 10px;
+  } */
+  .toggle-children {
+    z-index: 1;
+    background:#ddd;
+  }
+  .node-content-wrapper {
+    border:1px solid #ccc;
+    background:#fff;
+    /* padding:5px;*/
+    box-sizing: border-box; 
+  }
+  

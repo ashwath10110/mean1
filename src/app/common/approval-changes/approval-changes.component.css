@@ -1,0 +1,38 @@
+.mat-elevation-z4{
+    box-shadow: #fff !important;
+}
+
+.content{
+    padding-top: 1rem !important;
+    margin-bottom:22px !important;
+	
+}
+
+.content,.card-header {
+		padding:0px !important; 
+		margin-bottom: 0;
+		background-color:white !important; 
+		border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+	}
+.highlight{
+    color: blue;
+}
+.actions{
+    margin: 1rem 0;
+}
+.subheading-action{
+    margin-top: -16px;
+}
+.content-header{
+	padding-top: 5px !important;
+    padding-bottom: 15px !important;
+}
+
+.card-header{
+	font-size: medium !important;
+    font-weight: 400 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px!important;
+}
+
+

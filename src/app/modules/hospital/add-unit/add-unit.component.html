@@ -1,0 +1,36 @@
+
+<form [formGroup]="orgChartFormGroup" (ngSubmit)="onSubmitOrgChart(orgChartFormGroup)">
+    <div mat-dialog-content>
+        <mat-form-field>
+        <input matInput placeholder="Name(of unit)" formControlName="name" required>
+        </mat-form-field>
+    
+        <mat-form-field>
+        <input matInput placeholder="Customer Identification Number" formControlName="cin">
+        </mat-form-field>
+    
+        <!-- <mat-form-field>
+        <input matInput placeholder="License Number" formControlName="licenseNumber" required>
+        </mat-form-field> -->
+    
+        <mat-form-field>
+        <input matInput placeholder="GST ID Number" formControlName="gstin" required>
+        </mat-form-field>
+    
+        <mat-form-field>
+        <input matInput placeholder="PAN Number" formControlName="pan" required>
+        </mat-form-field>
+    
+        <div>
+            <mat-checkbox [checked]='isFunctional' formControlName="isFunctional">
+                Is this a functional hospital
+            </mat-checkbox>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button *ngIf="data.isHeadQuarter" [disabled]="!orgChartFormGroup.valid" color="accent" type="submit">Set Up Headquarters</button>
+        <button mat-raised-button *ngIf="!data.isHeadQuarter" [disabled]="!orgChartFormGroup.valid" color="accent" type="submit">Set Up Unit</button>
+    </div>
+</form>
+
+<app-loader *ngIf="state?.loading"></app-loader>

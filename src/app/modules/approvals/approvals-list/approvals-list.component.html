@@ -1,0 +1,80 @@
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+  <span class="page-title mat-display-1">
+    Pending Approvals
+  </span>
+
+  <div>
+    <button  mat-raised-button id="bulkApproveBtn" color="primary" type="button" (click)="handleBulkApprove()">
+      Approve Selected
+    </button> &nbsp;&nbsp;&nbsp;
+    <button  mat-raised-button id="bulkRejectBtn" color="primary" type="button" (click)="handleBulkReject()">
+      Reject Selected
+    </button>
+  </div>
+</div>
+<br/>
+<p-table [columns]="cols" [value]="(allApprovals$|async)" [rows]="10" [paginator]="true" [(selection)]="selectedValue" (onRowSelect)="onRowSelect($event)"
+dataKey="requestedAt" #dt>
+
+ <ng-template pTemplate="header" let-columns>
+   <tr>
+    <th style="width: 3em">
+      <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+    </th>
+    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+      <span *ngSwitchCase="'requestedUser.firstName'">
+          Submitted By
+      </span>
+      <span *ngSwitchCase="'requestedAt'">
+          Requested On
+      </span>
+      <p-dropdown *ngSwitchCase="'section'" [options]="sections" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+      <p-dropdown *ngSwitchCase="'method'" [options]="methods" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+      <span *ngSwitchCase="'actions'">
+        Actions
+      </span>
+    </th>
+  </tr>
+ </ng-template>
+
+ <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+   <tr [pSelectableRow]="rowData">
+     <td>
+      <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+     </td>
+     <td *ngFor="let col of columns" [ngSwitch]="col.field">
+      <span *ngSwitchCase="'requestedUser.firstName'">
+        {{rowData.requestedUser.firstName}}
+      </span>
+      <span *ngSwitchCase="'requestedAt'">
+        {{rowData.requestedAt | date:'dd.MM.yyyy'}}
+      </span>
+      <span *ngSwitchCase="'section'">
+        {{rowData.section.split("_").join(" ")}}
+      </span>
+      <span *ngSwitchCase="'method'">
+        <span *ngIf="rowData.method === 'PUT'">
+          Updated Entities
+        </span>
+        <span *ngIf="rowData.method === 'POST'">
+          New Entities
+        </span>
+      </span>
+      <span *ngSwitchCase="'actions'">
+        <button id="reviewApproval{{rowIndex}}" mat-icon-button title="Review details" type="button" (click)="handleApprove(rowData)">
+          <mat-icon aria-hidden="true">visibility</mat-icon>
+        </button>&nbsp;&nbsp;&nbsp;
+        <button id="reviewApproval{{rowIndex}}" mat-icon-button title="Reject Changes" type="button" (click)="rejectApproval(rowData)">
+          <mat-icon aria-hidden="true">clear</mat-icon>
+        </button>
+      </span>
+      <span *ngSwitchDefault>
+        {{rowData[col.field]}}
+      </span>
+     </td>
+   </tr>
+ </ng-template>
+</p-table>
+
+<app-loader *ngIf="(loading$ | async)"></app-loader>

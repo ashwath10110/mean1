@@ -1,0 +1,45 @@
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+   
+    <span class="page-title mat-display-1">Partners</span>
+    <button class="create-new-btn action-button blue lighten-1" mat-raised-button (click)="createNewPartner()">
+      Create New
+    </button>
+  </div>
+  <p-breadcrumb [model]="breadcrumbs" *ngIf="unitId"></p-breadcrumb>
+  <br/>
+<div *ngIf="partnersList.length > 0" class="table_fix_h">
+    <p-table [value]="partnersList" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Hospital</th>
+                <th>Role</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-partner styleClass="partner-list">
+            <tr>
+                <td>{{partner.name}}</td>
+                <td>
+                    {{getUnitName(partner.unitId)}}
+                </td>
+                <td>{{partner.partnerRole}}</td>
+                <td>{{partner.partnerType}}</td>
+                <td>
+                        <button mat-icon-button type="button"  (click)="viewPartnerInfoFn(partner)">
+                                <mat-icon aria-hidden="true">visibility</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button"  color="warn" type="submit" (click)="deletePartnerFn(partner)">
+                                <mat-icon aria-hidden="true">delete</mat-icon>
+                        </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div *ngIf="partnersList.length === 0 && !loading">
+    <span>No Partners Available. Please Add Partners</span>
+</div>
+<app-loader *ngIf="loading"></app-loader>

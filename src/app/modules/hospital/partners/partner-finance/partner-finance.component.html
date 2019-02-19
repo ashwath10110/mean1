@@ -1,0 +1,9 @@
+<span class="page-title mat-display-1">Finance Setup</span>
+<app-approval-changes *ngIf="showApproveButton && approvalComments" [approvalComments]="approvalComments"></app-approval-changes>
+<p-breadcrumb [model]="breadCrumbs" *ngIf="!showApproveButton"></p-breadcrumb>
+<mat-card class="content">
+    <app-finance [financeData]="partnerFinanceData" (validStatus)="handleFormStatusChanges($event)" #partnerFinance></app-finance>
+    <button mat-raised-button color="primary" *ngIf="showApproveButton" (click)="updateFinance()">Approve details</button>
+    <button mat-raised-button color="primary" *ngIf="showApproveButton" type="button" (click)="rejectApproval()" style="margin: 10px;">Reject details</button>
+    <button mat-raised-button color="primary" *ngIf="!showApproveButton"(click)="updateFinance()">Update Finance</button>
+</mat-card>

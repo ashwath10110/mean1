@@ -1,0 +1,24 @@
+Count: {{media?.length}}
+<div *ngIf="media?.length" class="table_fix_h">
+    <table>
+        <tr>
+            <th>Attachment Type</th>
+            <th>Attachment Info</th>
+            <th>File Type</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let item of media">
+            <td>{{item.attachmentType || "--"}}</td>
+            <td>{{item.tag || "--"}}</td>
+            <td>{{item.fileType || "--"}}</td>
+            <td>
+                <button mat-icon-button type="button" (click)="viewMediaFn(item)">
+                    <mat-icon>arrow_downward</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" type="button" (click)="deleteMediaFn(item)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

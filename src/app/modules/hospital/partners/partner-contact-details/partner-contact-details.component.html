@@ -1,0 +1,129 @@
+<div >
+    <span class="title mat-subheading-2">Contacts</span>
+    <button *ngIf="isAddBtnVisible" mat-button color="accent" (click)="onClickAddContact($event, 'add')" [disabled]="contacts?.length == 5">
+            <mat-icon>add</mat-icon>Add New
+    </button>
+</div>
+
+<div class="new-contact" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center" #partnerContactPersonForm [formGroup]="partnerContactPersonFormGroup" *ngIf="isAddVisible" >
+    <span fxFlex="100" class="mat-body-2">Enter New Contact</span>
+    <form fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center" [formGroup]="partnerContactPersonFormGroup">
+                <mat-form-field fxFlex="98">
+                                <input type="number" matInput placeholder="Phone Number" formControlName="phone" required>
+                                <mat-error>
+                                        <span *ngIf="partnerContactPersonFormGroup?.controls.phone?.errors?.required">Mobile Number Required</span>
+                                        <span *ngIf="partnerContactPersonFormGroup?.controls.phone?.errors?.pattern"> Invalid Mobile Number</span>
+                                </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex="98">
+                                <input type="email" matInput formControlName="email" placeholder="Email" required>
+                                <mat-error>
+                                        <span *ngIf="partnerContactPersonFormGroup?.controls.email?.errors?.required">Email Required</span>
+                                        <span *ngIf="partnerContactPersonFormGroup?.controls.email?.errors?.pattern"> Invalid Email</span>
+                                </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex="98">
+                                <input type="text" matInput formControlName="firstName" placeholder="First Name" required>
+                                <mat-error>
+                                                <span *ngIf="partnerContactPersonFormGroup?.controls.firstName?.errors?.required">First Name Required</span>  
+                                </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex="98">
+                                <input type="text" matInput formControlName="lastName" placeholder="Last Name" required>
+                                <mat-error>
+                                                <span *ngIf="partnerContactPersonFormGroup?.controls.lastName?.errors?.required">Last Name Required</span>  
+                                </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex="98">
+                                <input type="text" matInput formControlName="username"placeholder="Username" required>
+                                <mat-error>
+                                                <span *ngIf="partnerContactPersonFormGroup?.controls.username?.errors?.required">Username Required</span>  
+                                </mat-error>
+                </mat-form-field>
+                <div fxFlex="60">
+                        <button fxFlex="60" color="accent" *ngIf="!isDisabled" [disabled]="!partnerContactPersonFormGroup.valid" mat-icon-button (click)="onClickSaveContact(partnerContactPersonFormGroup, newContact)">
+                                <mat-icon>check</mat-icon>
+                        </button>
+                        <button fxFlex="60" color="accent"  *ngIf="isDisabled" [disabled]="!partnerContactPersonFormGroup.valid" mat-icon-button (click)="onClickSaveContact(partnerContactPersonFormGroup, newContact)">
+                                        <mat-icon>check</mat-icon>
+                                      </button>
+                        <button fxFlex="60" color="warn" mat-icon-button (click)="isAddVisible = false; isAddBtnVisible = true; onCanelContact(newContact)">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                </div>
+
+    </form>
+    <!-- <form fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center" #partnerContactPersonForm [formGroup]="partnerContactPersonFormGroup">
+     <mat-form-field fxFlex="98">
+            <input type="number" matInput placeholder="Phone Number" formControlName="phone" required>
+          </mat-form-field>
+          <mat-form-field fxFlex="98">
+                <input type="email" matInput formControlName="email" placeholder="Email" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="98">
+                <input type="text" matInput formControlName="firstName" placeholder="First Name" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="98">
+                <input type="text" matInput formControlName="lastName" placeholder="Last Name" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="98">
+                <input type="text" matInput formControlName="userName"placeholder="Username" [disabled]="isDisabled">
+        </mat-form-field>
+        <div fxFlex="60">
+                <button fxFlex="60" color="accent" *ngIf="!isDisabled" [disabled]="!partnerContactPersonFormGroup.valid" mat-icon-button (click)="onClickSaveContact($event, newContact)">
+                        <mat-icon>check</mat-icon>
+                      </button>
+                      <button fxFlex="60" color="accent"  *ngIf="isDisabled" [disabled]="!partnerContactPersonFormGroup.valid" mat-icon-button (click)="onClickSaveContact($event, newContact)">
+                                <mat-icon>check</mat-icon>
+                              </button>
+                <button fxFlex="60" color="warn" mat-icon-button (click)="isAddVisible = false; isAddBtnVisible = true; onCanelContact(newContact)">
+                  <mat-icon>close</mat-icon>
+                </button>
+        </div>
+        </form> -->
+        </div>
+    <!-- 
+    <mat-form-field fxFlex="45">
+            <mat-form-field fxFlex="45">
+            <input type="text" matInput [(ngModel)]="newContact.fullName" placeholder="Enter Full Name">
+    </mat-form-field>
+    <mat-form-field fxFlex="45">
+            <mat-form-field fxFlex="45">
+            <input type="text" matInput [(ngModel)]="newContact.id" placeholder="Enter Associate Id">
+    </mat-form-field>
+    -->
+
+    <div *ngIf="contacts?.length > 0" class="table_fix_h">
+        <p-table [value]="contacts" [rows]="10">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-contact>
+                <tr>
+                    <td>{{contact.firstName}}</td>
+                    <td>{{contact.lastName}}</td>
+                    <td>
+                        {{contact.phone}}
+                    </td>
+                    <td>{{contact.email}}</td>
+                    <td>
+                                <button mat-icon-button type="button"  (click)="populateSelectedContact(contact)">
+                                                <mat-icon aria-hidden="true">visibility</mat-icon>
+                                        </button>
+                            <button mat-icon-button type="button"  *ngIf="this.roles[0].indexOf('ADMINISTRATOR') >= 0"  color="warn" type="submit" (click)="onDeleteContact(contact)">
+                                    <mat-icon aria-hidden="true">delete</mat-icon>
+                            </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div fxFlex="100" *ngIf="(contacts || []).length == 0" fxLayoutAlign="start center">
+            <span class="mat-body-2">There are no contacts</span>
+    </div>

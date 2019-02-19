@@ -1,0 +1,40 @@
+<div fxLayout="row wrap" fxLayoutAlign="start start">
+  <mat-card class="tenant-card blue lighten-1" *ngFor="let tenant of tenantsList">
+    <mat-card-header style="background: rgb(30, 136, 229);">
+      <div *ngIf="tenant.isContractExpiring && tenant.expiresIn>0" title='Contract expires in {{tenant.expiresIn}} Days' class="red-dot red lighten-1"></div>
+      <div *ngIf="tenant.isContractExpiring && tenant.expiresIn<=0" title='Contract expired' class="red-dot red lighten-1"></div>
+      <mat-card-title>{{tenant.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="mat-body-1 tenant-desc"><span class="mt-title">Hospital Units</span>: <b>{{tenant.units}}</b></div>
+      <div class="mat-body-2"><span class="mt-title"> Doctors </span>: <b>{{tenant.doctors}}</b></div>
+      <div class="mat-body-2"><span class="mt-title">Contract ends on </span>: <b>{{tenant.contractEndDate | date:
+          'dd.MM.yyyy'}}</b></div>
+      <div class="mat-body-3 desc-content">
+        <div class="mat-card-image">
+          <img src="assets/images/background/megamenubg.jpg" alt="no image">
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end" class="blue darken-2"  style="color: rgb(30, 136, 229); height: 55px;  ">
+      <button id="setupBtn" mat-icon-button title="Setup" type="button" (click)="setupTenantFn(tenant)">
+        <mat-icon aria-hidden="true">fast_forward</mat-icon>
+      </button>
+      <button id="viewClientBtn" mat-icon-button title="View details" type="button" (click)="viewTenantFn(tenant)">
+        <mat-icon aria-hidden="true">visibility</mat-icon>
+      </button>
+      <button id="orgTreeBtn" mat-icon-button title="Organization Tree" type="button" (click)="setupHospitalUnits(tenant)">
+        <mat-icon aria-hidden="true">device_hub</mat-icon>
+      </button>
+      <button id="deleteBtn" mat-icon-button title="Delete Client" type="button" (click)="deleteTenantFn(tenant)">
+        <mat-icon aria-hidden="true">delete</mat-icon>
+      </button>
+      <!-- <button type="button" color="warn" mat-icon-button (click)="disableTenantFn(tenant)">
+                                <mat-icon aria-hidden="true">block</mat-icon>
+                        </button> -->
+    </mat-card-actions>
+    <!-- <mat-card-footer class="no-margin"></mat-card-footer> -->
+  </mat-card>
+</div>

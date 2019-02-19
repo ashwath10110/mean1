@@ -1,0 +1,9 @@
+.specialitiesListPage ::ng-deep div.ui-tree {
+  width: 100% !important;
+}
+
+.specialitiesListPage ::ng-deep div.ui-tree ul {
+  display: flex !important;
+  flex-flow: wrap column !important;
+  max-height: 500px !important;
+}

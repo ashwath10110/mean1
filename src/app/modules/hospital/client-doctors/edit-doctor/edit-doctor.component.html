@@ -1,0 +1,95 @@
+<span mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  Doctor Details
+  <button mat-icon-button color="accent" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</span>
+<app-approval-changes *ngIf="(showApproveButton && approvalComments.length)" [approvalComments]="approvalComments"></app-approval-changes>
+
+<div mat-dialog-content>
+  <form [formGroup]="doctorsFormGroup" (ngSubmit)="onAddDoctor(doctorsFormGroup)">
+    <mat-form-field>
+        <mat-select placeholder="Consulting Hospital" formControlName="consultingHospital" (selectionChange)="onKeyChange(doctorsFormGroup)" multiple required>
+          <mat-option *ngFor="let unit of unitsList" [value]="unit.id">
+            {{unit.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+        <span *ngIf="doctorsFormGroup?.controls.consultingHospital?.errors?.required"> Consulting Hospital is
+          required</span>
+      </mat-error>
+      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" required>
+       <mat-error>
+        <span *ngIf="doctorsFormGroup?.controls.name?.errors?.required">Name is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email Id" formControlName="email" required>
+      <mat-error>
+        <span *ngIf="doctorsFormGroup?.controls.email?.errors?.required"> Email Id is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Qualification" formControlName="qualification" required>
+       <mat-error>
+        <span *ngIf="doctorsFormGroup?.controls.qualification?.errors?.required"> Qualification is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Designation" formControlName="designation" required>
+       <mat-error>
+        <span *ngIf="doctorsFormGroup?.controls.qualification?.errors?.required"> Designation is
+          required</span>
+      </mat-error>
+    </mat-form-field>
+     <mat-form-field >
+        <mat-select placeholder="Specialization" formControlName="specialization" required>
+          <mat-option *ngFor="let specialization of selectedSpecializationLists" [value]="specialization.id">
+            {{specialization.label}}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+        <span *ngIf="doctorsFormGroup?.controls.specialization?.errors?.required"> Specialization is
+          required</span>
+      </mat-error>
+      </mat-form-field>
+
+    <app-address [address]="address" [locationId]="locationId" fxFlex="98" #AddressComponent (addressChange)="handleAddressChanges($event)"></app-address>
+
+
+    <div fxFlex="98" fxLayout="row" fxLayoutAlign="start center" flexGap="40px">
+      <div class="mat-subheading-2">Attachments</div>
+      <button class="subheading-action" type="button" mat-icon-button *ngIf="!doctorsFormGroup.get('attachments').value"
+        (click)="doctorsFormGroup.get('attachments').setValue(true)">
+        <mat-icon color="accent">add</mat-icon>
+      </button>
+      <button class="subheading-action" type="button" mat-icon-button *ngIf="doctorsFormGroup.get('attachments').value"
+        (click)="doctorsFormGroup.get('attachments').setValue(false)">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex="98" *ngIf="doctorsFormGroup.get('attachments').value === true">
+      <app-media-container 
+          [maxSizeInKb]="maxSizeInKb"
+          [tenantId]="tenantId"
+          [fileTypes]="fileTypes"
+          [attachmentIds]="attachmentIds"
+          (updates)="handleFileUpload($event)">
+      </app-media-container>
+    </div>
+
+    <div class="text-center">
+        <button mat-raised-button color="primary" [disabled]="!((doctorsFormGroup.valid) && (AddressComponent.isValid))" *ngIf="showApproveButton" type="submit" style="margin-right:5px;">Approve Doctor</button>
+        <button mat-raised-button color="primary" type="button" *ngIf="showApproveButton" (click)="rejectApproval()">Reject Doctor</button>
+       <button mat-raised-button color="accent" [disabled]="!((doctorsFormGroup.valid) && (AddressComponent.isValid))"  *ngIf="!showApproveButton" type="submit" >Submit</button>
+    </div>
+  </form>
+</div>
+
+<app-loader *ngIf="stock?.loading"></app-loader>

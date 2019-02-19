@@ -1,0 +1,17 @@
+<span class="page-title mat-display-1">Contact Person Setup</span>
+<p-breadcrumb [model]="breadCrumbs" *ngIf="!showApproveButton"></p-breadcrumb>
+    <mat-card class="content">
+
+        <form fxLayout="row wrap" fxLayoutAlign="space-around center">
+            <!-- <anms-phone-contacts [(contacts)]="contactDetails" (contactsChange)="handleContactsChange($event)"></anms-phone-contacts> -->
+            <anms-partner-contact-details 
+            fxFlex="100" 
+            fxLayout="column wrap" 
+            [(contacts)] = "contactDetails" 
+            (contactsChange)="handleContactsChange($event)"
+            (removeContact)="handleRemoveContact($event)"
+            ></anms-partner-contact-details>
+            <button mat-raised-button color="primary" style="margin-top: 10px;"(click)="proceedFromContacts()" [disabled]="contactDetails.length === 0">Continue</button>
+        </form>
+    
+    </mat-card>

@@ -1,0 +1,55 @@
+
+
+<form novalidate fxLayout="column" [formGroup]="form">
+
+  <mat-form-field>
+    <input matInput formControlName="address1" placeholder="address1" required>
+    <mat-error *ngIf="form.get('address1').errors && form.get('address1').touched">
+      <span [hidden]="!form.get('address1').hasError('required')">This field is required.</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="address2" placeholder="address2">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select required placeholder="country" id="state" formControlName="country" (selectionChange)="onChangeCountry($event)">
+      <mat-option *ngFor="let data of countries" [value]="data.countryId">{{data.countryName}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('country').errors && form.get('country').touched">
+      <span [hidden]="!form.get('country').hasError('required')">This field is required.</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select required placeholder="state" id="state" formControlName="state" (selectionChange)="onChangeState($event)">
+      <mat-option *ngFor="let data of states" [value]="data.stateId">{{data.stateName}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('state').errors && form.get('state').touched">
+      <span [hidden]="!form.get('state').hasError('required')">This field is required.</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select required placeholder="city" id="state" formControlName="city">
+      <mat-option *ngFor="let data of cities" [value]="data.cityId">{{data.cityName}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('city').errors && form.get('city').touched">
+      <span [hidden]="!form.get('city').hasError('required')">This field is required.</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input required matInput formControlName="pincode" placeholder="pincode">
+    <mat-error *ngIf="form.get('pincode').errors && form.get('pincode').touched">
+      <span [hidden]="!form.get('pincode').hasError('required')">This field is required.</span>
+    </mat-error>
+  </mat-form-field>
+
+  <!-- <button class="mg-top" type="submit" [disabled]="!form.valid" mat-raised-button color="primary">Save</button> -->
+</form>
+
+<!-- {{form.valid}} -->
+<br />
+<!-- {{form.value|json}} -->

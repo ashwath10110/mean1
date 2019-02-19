@@ -1,0 +1,34 @@
+<div *ngIf="state?.doctorsList" class="table_fix_h" style="margin-top:10px;">
+    <p-table [value]="state?.doctorsList" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Designation</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-doctor>
+            <tr>
+                <td>{{doctor.name}}</td>
+                <td>{{doctor.Specialization}}</td>
+                <td>{{doctor.designation}}</td>
+                <td>{{doctor.email}}</td>
+                <td>
+                    <button mat-icon-button  type="submit" (click)="editDoctorFn(doctor)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" type="submit" (click)="deleteDoctorFn(doctor)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<div fxLayout="column" fxLayoutAlign="center center" style="margin-top:10px">
+    <button mat-raised-button color="accent" (click)="addDoctor()"><mat-icon>add</mat-icon>Add Doctor</button>
+</div>

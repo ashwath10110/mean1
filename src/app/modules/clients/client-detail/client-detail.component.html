@@ -1,0 +1,57 @@
+<span class="page-title mat-display-1">Client Setup</span>
+<p-breadcrumb [model]="breadCrumbs" *ngIf="breadCrumbs.length"></p-breadcrumb>
+<mat-card class="content">
+  <form id="clientData" [formGroup]="tenantInfoFormGroup" (ngSubmit)="onSubmitTenantInfo(tenantInfoFormGroup)">
+
+  <mat-form-field class="each-input-padding" style="margin-top:10px;">
+    <input id="clientName" matInput placeholder="Name" formControlName="name" required>
+    <mat-error>
+      <span *ngIf="tenantInfoFormGroup?.controls.name?.errors?.required">Client Name Required</span>
+      <span *ngIf="tenantInfoFormGroup?.controls.name?.errors?.pattern"> Invalid Client Name</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="each-input-padding">
+    <mat-label>Contract Type</mat-label>
+    <mat-select id="clientType" #fontSize formControlName="type" required>
+      <mat-option value="SINGLE">Single</mat-option>
+      <mat-option value="MULTIPLE">Multiple</mat-option>
+    </mat-select>
+    <mat-error>
+      <span *ngIf="tenantInfoFormGroup?.controls.type?.errors?.required">Contract Type Required</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="each-input-padding">
+    <input id="cin" matInput placeholder="Corporate Identification Number" formControlName="cin">
+    <mat-error>
+      <span *ngIf="tenantInfoFormGroup?.controls.cin?.errors?.pattern"> Invalid Corporate Identification Number</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="each-input-padding">
+    <input matInput id="gstin" placeholder="GSTIN" formControlName="gstin" required>
+    <mat-error>
+      <span *ngIf="tenantInfoFormGroup?.controls.gstin?.errors?.required">GSTIN Required</span>
+      <span *ngIf="tenantInfoFormGroup?.controls.gstin?.errors?.pattern"> Invalid GSTIN Number</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="each-input-padding">
+    <input matInput id="pan" placeholder="PAN" formControlName="pan" required>
+    <mat-error>
+      <span *ngIf="tenantInfoFormGroup?.controls.pan?.errors?.required">PAN Number Required</span>
+      <span *ngIf="tenantInfoFormGroup?.controls.pan?.errors?.pattern"> Invalid PAN Number</span>
+    </mat-error>
+  </mat-form-field>
+
+  <!-- <app-file-upload [fileTypes]="[]" [fileIds]="[]" (updates)="handleFileUpload($event)"></app-file-upload> -->
+
+  
+  <button mat-raised-button id="updateClient" color="primary" type="submit" [disabled]="!tenantInfoFormGroup.valid">Update
+      Client</button>
+
+
+</form>
+</mat-card>
+<app-loader *ngIf="clientsData?.loading"></app-loader>

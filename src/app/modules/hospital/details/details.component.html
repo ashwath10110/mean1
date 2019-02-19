@@ -1,0 +1,46 @@
+<p-breadcrumb *ngIf="breadCrumbs.length > 0" [model]="breadCrumbs"></p-breadcrumb>
+
+<app-approval-changes *ngIf="showApproveButton" [approvalComments]="approvalComments"></app-approval-changes>
+
+<mat-card class="content">
+  <mat-card-content>
+  <form fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="unitDetailsFormGroup" (ngSubmit)="onSubmitUnitData(unitDetailsFormGroup)">
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Name(of unit)" formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Customer Identification Number" formControlName="cin" required>
+    </mat-form-field>
+
+    <!-- <mat-form-field fxFlex="98">
+      <input matInput placeholder="License Number" formControlName="licenseNumber" required>
+    </mat-form-field> -->
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="GST ID Number" formControlName="gstin" required>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="PAN Number" formControlName="pan" required>
+    </mat-form-field>
+
+    <div fxFlex="98">
+      <mat-checkbox [checked]='isFunctional' formControlName="isFunctional" required>
+        Is this a functional hospital
+      </mat-checkbox>
+    </div>
+
+    <div align="center" style="padding-bottom: 20px">
+      <button mat-raised-button color="primary" *ngIf="showApproveButton" type="submit" [disabled]="!unitDetailsFormGroup.valid">Approve details</button>
+    </div>
+    <div align="center" style="padding-bottom: 20px">
+      <button mat-raised-button color="primary" *ngIf="showApproveButton" type="button" (click)="rejectApproval()" [disabled]="!unitDetailsFormGroup.valid">Reject details</button>
+    </div>
+    <div align="center" style="padding-bottom: 20px">
+      <button mat-raised-button color="primary" *ngIf="!showApproveButton" type="submit" [disabled]="!unitDetailsFormGroup.valid">Update unit details</button>
+    </div>
+  </form>
+ </mat-card-content>
+
+</mat-card>

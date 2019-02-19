@@ -1,0 +1,19 @@
+@import '../../../../assets/styles/variable.scss';
+
+.tenant-card {
+  
+  min-width: 300px;
+
+  mat-card-content {
+    min-height: 100px;
+  }
+
+  mat-card-actions {
+    padding-bottom: 30px !important;
+    margin-top: -30px !important;
+  }
+
+  mat-card-title {
+    font-size: 20px !important;
+  }
+}

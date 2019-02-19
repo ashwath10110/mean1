@@ -1,0 +1,34 @@
+<div class="main-container" [dir]="dir" [ngClass]="{'minisidebar': minisidebar, 'boxed': boxed, 'danger': danger, 'blue': blue, 'green': green, 'dark': dark }"> 
+    <mat-toolbar color="primary" class="topbar telative">
+        <div class="navbar-header">
+            <a class="navbar-brand" (click)="handleClick('navbar-brand')">
+                <span class="text-white" fxShow="false" fxShow.gt-xs>
+                    <h1>MEDBUD</h1>
+                </span>
+            </a>
+       
+        </div>
+
+        <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span fxFlex></span>
+
+        <app-header (updates)="handleHeaderUpdates($event)"></app-header>
+
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0" [ngClass]="{'minisidebar': minisidebar}">
+        <mat-sidenav #snav id="snav" class="pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches" (open)="sidebarOpened = true" (close)="sidebarOpened = false" style="background-color: #f1effd;" >
+            <app-sidebar (updates)="handleSidebarUpdates($event)"></app-sidebar>
+        </mat-sidenav>
+
+        <mat-sidenav-content class="page-wrapper">
+            <div [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path">
+                <router-outlet #o="outlet"></router-outlet>
+            </div>
+        </mat-sidenav-content>
+        
+    </mat-sidenav-container>
+</div>

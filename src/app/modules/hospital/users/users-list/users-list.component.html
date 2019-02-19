@@ -1,0 +1,42 @@
+
+<div *ngIf="users?.length" class="table_fix_h">
+    <p-table [value]="users" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>User Name</th>
+                <th>First Name</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+       
+        <ng-template pTemplate="body" let-user>
+            <ng-container *ngIf="user?.userDetails == null; then tenantContent else unitContent" ></ng-container>
+            <ng-template  #unitContent>
+                <tr>
+                <td>{{user.userDetails.username || "--"}}</td>
+                <td>{{user.userDetails.firstName || "--"}}</td>
+                <td>
+                    <button mat-icon-button (click)="editUserFn(user.userDetails)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteUserFn(user)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td></tr>
+            </ng-template>
+        <ng-template  #tenantContent>
+            <tr>
+                <td>{{user.username || "--"}}</td>
+                <td>{{user.firstName || "--"}}</td>
+                <td>
+                    <button mat-icon-button (click)="editUserFn(user)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button  color="warn" *ngIf="this.roles[0].indexOf('ADMINISTRATOR') >= 0"  (click)="deleteUserFn(user)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </ng-template></ng-template>
+    </p-table>
+</div>

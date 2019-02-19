@@ -1,0 +1,90 @@
+<form [formGroup]="partnerInfoFormGroup" fxLayout="row wrap" fxLayoutAlign="space-around center" (ngSubmit)="onSubmitPartnerInfo(partnerInfoFormGroup)">
+        <mat-form-field fxFlex="98">
+                <input matInput placeholder="Name" formControlName="name" required>
+                <mat-error>
+                    <span *ngIf="partnerInfoFormGroup?.controls.partnerName?.errors?.required">Partner Name Required</span>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="48">
+                <mat-select placeholder="Type" formControlName="partnerType" required>
+                    <!-- <mat-option [value]=''>Select</mat-option> -->
+                    <mat-option *ngFor="let type of partnerTypes" [value]="type.value">{{type.displayValue}}</mat-option>
+                </mat-select>
+                
+                <mat-error>
+                    <span *ngIf="partnerInfoFormGroup?.controls.partnerType?.errors?.required">Partner Type Required</span>
+                </mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field fxFlex="48">
+            <mat-select placeholder="Role" formControlName="partnerRole" required>
+                <!-- <mat-option [value]=''>Select</mat-option> -->
+                <mat-option *ngFor="let role of roles" [value]="role.value">{{role.displayValue}}</mat-option>
+            </mat-select>
+            
+            <mat-error>
+                <span *ngIf="partnerInfoFormGroup?.controls.role?.errors?.required">Partner Role Required</span>
+            </mat-error>
+
+    </mat-form-field>
+    <mat-form-field fxFlex="48" >
+        <mat-select placeholder="Partnering Hospital" formControlName="unitId" required>
+            <!-- <mat-option [value]='' >Select</mat-option> -->
+            <mat-option *ngFor="let unit of hospitalUnits" [value]="unit.value">{{unit.displayValue}}</mat-option>
+        </mat-select>
+        
+        <mat-error>
+            <span *ngIf="partnerInfoFormGroup?.controls.hospitalUnit?.errors?.required">Partner Role Required</span>
+        </mat-error>
+
+</mat-form-field>
+    <mat-form-field   fxFlex="48">
+        <input matInput placeholder="Corporate Identification Number" formControlName="cin" required maxlength="21">
+        <mat-error>
+            <span *ngIf="partnerInfoFormGroup?.controls.cin?.errors?.required">Corporate Identification Number Required</span>
+            <span *ngIf="partnerInfoFormGroup?.controls.cin?.errors?.pattern"> Invalid Corporate Identification Number</span>
+        </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field   fxFlex="48">
+        <input matInput placeholder="PAN" formControlName="pan" required maxlength="10">
+        <mat-error>
+            <span *ngIf="partnerInfoFormGroup?.controls.pan?.errors?.required">PAN Number Required</span>
+            <span *ngIf="partnerInfoFormGroup?.controls.pan?.errors?.pattern"> Invalid PAN Number</span>
+            <span *ngIf="partnerInfoFormGroup?.controls.pan?.errors?.minlength">  PAN Number should be of 10 characters</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field   fxFlex="48">
+        <input matInput placeholder="GSTIN" formControlName="gstin" required maxlength="15">
+        <mat-error>
+            <span *ngIf="partnerInfoFormGroup?.controls.gstin?.errors?.required">GSTIN Required</span>
+            <span *ngIf="partnerInfoFormGroup?.controls.gstin?.errors?.pattern"> Invalid GSTIN Number</span>
+        </mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field>
+        <mat-select placeholder="Partnering Hospital" formControlName="unitId" required>
+            <mat-option *ngFor="let unit of hospitalUnits" [value]="unit.value">{{unit.displayValue}}</mat-option>
+        </mat-select>
+        
+        <mat-error>
+            <span *ngIf="partnerInfoFormGroup?.controls.hospitalUnit?.errors?.required">Partner Role Required</span>
+        </mat-error>
+
+</mat-form-field> -->
+<!-- <mat-form-field>
+    <input matInput placeholder="Corporate Identification Number" formControlName="cin" required>
+    <mat-error>
+        <span *ngIf="partnerInfoFormGroup?.controls.cin?.errors?.required">Corporate Identification Number Required</span>
+        <span *ngIf="partnerInfoFormGroup?.controls.cin?.errors?.pattern"> Invalid Corporate Identification Number</span>
+    </mat-error>
+</mat-form-field> -->
+
+<div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!partnerInfoFormGroup.valid">Create Partner</button>
+  </div>
+</form>

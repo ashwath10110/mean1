@@ -1,0 +1,13 @@
+
+<span mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+    Add new client
+    <button mat-icon-button id="closeBtn" color="accent" mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</span>
+
+<div mat-dialog-content id="newClientModal">
+    <anms-client-info (updates)="handleUpdates($event)"></anms-client-info>
+</div>
+
+<app-loader *ngIf="stocks?.loading"></app-loader>

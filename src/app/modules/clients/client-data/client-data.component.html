@@ -1,0 +1,37 @@
+<span class="page-title mat-display-1">Address Setup</span>
+
+<p-breadcrumb [model]="breadCrumbs"></p-breadcrumb>
+
+<mat-card class="content">
+
+  <form id="clientAddressForm" fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="tenantInfoFormGroup"
+    (ngSubmit)="onSubmitClientData(tenantInfoFormGroup)">
+
+    <app-address [address]="address" [locationId]="clientData?.locationId" fxFlex="98" #AddressComponent (addressChange)="handleAddressChanges($event)"></app-address>
+
+    <mat-form-field fxFlex="98">
+      <input matInput id="businessEmail" placeholder="Email Id" formControlName="businessEmail" required>
+      <mat-error>
+      <span *ngIf="tenantInfoFormGroup?.controls.businessEmail?.errors?.required"> Business Email is
+      required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="98">
+      <input matInput id="primaryPhone" placeholder="Primary Phone" formControlName="primaryPhone" required>
+      <mat-error>
+      <span *ngIf="tenantInfoFormGroup?.controls.primaryPhone?.errors?.required"> Primary Phone is
+      required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="98">
+      <input matInput id="alternatePhone" placeholder="Alternate Phone" formControlName="alternatePhone">
+    </mat-form-field>
+    <div class="actions" fxFlex="98" flexLayout="row" flexLayoutAlign="center center">
+      <button mat-raised-button id="updateAddrBtn" color="primary" type="submit" [disabled]="!((tenantInfoFormGroup.valid) && (AddressComponent.isValid))">Update</button>
+    </div>
+
+  </form>
+
+  <!-- <button mat-raised-button (click)="loadDummyValidData()">_</button> -->
+
+</mat-card>

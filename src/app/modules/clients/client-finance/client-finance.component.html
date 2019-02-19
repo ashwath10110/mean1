@@ -1,0 +1,11 @@
+
+<span class="page-title mat-display-1">Finance Setup</span>
+
+<p-breadcrumb [model]="breadCrumbs"></p-breadcrumb>
+
+<mat-card class="content">
+    <app-finance [financeData]="financeData" (validStatus)="handleFormStatusChanges($event)" #clientFinance></app-finance>
+    <button mat-raised-button color="primary" id="updateFinance" (click)="updateFinance()" [disabled]="!isFinanceFormValid">Update Finance</button>
+</mat-card>
+<!-- 
+<button mat-raised-button (click)="loadDummyValidData()">Dummy</button> -->

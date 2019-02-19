@@ -1,0 +1,11 @@
+<span mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+        Add New Partner
+        <button mat-icon-button color="accent" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </span>
+    <div mat-dialog-content>
+        <anms-partner-info (updates)="handleUpdates($event)" [tenantId] = "tenantId"></anms-partner-info>
+        <!-- <anms-client-info [clientInfo]="" [tenantType]="" [clientMode]="" (updates)="handleUpdates($event)"></anms-client-info> -->
+    </div>
+    <!-- <app-loader *ngIf="stocks?.loading"></app-loader> -->

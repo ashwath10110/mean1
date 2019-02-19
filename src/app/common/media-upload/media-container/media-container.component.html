@@ -1,0 +1,8 @@
+<app-media-list *ngIf="metaDataList?.length !== 0" [media]="metaDataList" (viewMedia)="handleViewMedia($event)" (deleteMedia)="handleDeleteMedia($event)"></app-media-list>
+
+<div align="right" style="margin-top:6px;">
+    <button mat-raised-button type="button" color="accent" (click)="addAttachment()">
+        <mat-icon>add</mat-icon>
+        Add Attachments
+    </button>
+</div>

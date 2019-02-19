@@ -1,0 +1,42 @@
+<span class="page-title mat-display-1">Unit Address</span>
+<p-breadcrumb *ngIf="breadCrumbs.length > 0" [model]="breadCrumbs"></p-breadcrumb>
+<app-approval-changes *ngIf="showApproveButton" [approvalComments]="approvalComments"></app-approval-changes>
+<mat-card class="content">
+  <form fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="unitAddressFormGroup" (ngSubmit)="onSubmitUnitData(unitAddressFormGroup)">
+
+    <app-address [address]="address" [locationId]="locationId" fxFlex="98" #AddressComponent (addressChange)="handleAddressChanges($event)"></app-address>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Business Email" formControlName="businessEmail" pattern="^.+@[^\.].*\.[a-z]{2,}$" required>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Primary Phone" formControlName="primaryPhone" required>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Alternate Phone" formControlName="alternatePhone">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Website" formControlName="website">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="98">
+      <input matInput placeholder="Additional Information" formControlName="additionalInfo">
+    </mat-form-field>
+
+    <div align="center" *ngIf="showApproveButton" style="padding-bottom: 20px" >
+      <button mat-raised-button color="primary" type="submit" [disabled]="!((unitAddressFormGroup.valid) && (AddressComponent.isValid))">Approve details</button>
+    </div>
+    <div align="center" *ngIf="showApproveButton" style="padding-bottom: 20px" >
+      <button mat-raised-button color="primary" type="button" (click)="rejectApproval()">Reject details</button>
+    </div>
+    <div align="center" *ngIf="!showApproveButton" style="padding-bottom: 20px" >
+      <button mat-raised-button color="primary" type="submit" [disabled]="!((unitAddressFormGroup.valid) && (AddressComponent.isValid))">Update details</button>
+    </div>
+  </form>
+
+  <!-- <button (click)="proceedToFinance()">proceedToFinance</button> -->
+
+</mat-card>

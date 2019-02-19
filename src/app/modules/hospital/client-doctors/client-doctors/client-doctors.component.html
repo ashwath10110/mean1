@@ -1,0 +1,22 @@
+<p-breadcrumb [model]="breadCrumbs" *ngIf="breadCrumbs.length>0" ></p-breadcrumb>
+
+<div *ngIf="state?.currentClientDoctors">
+    <app-doctors-list 
+    [doctorsList]="state?.currentClientDoctors" 
+    (removeDoctorFromUnit)="handleRemoveDoctorFromUnit($event)"
+    (editDoctor)="editDoctors($event)"
+    ></app-doctors-list>
+</div>
+
+<div *ngIf="state?.currentClientDoctors?.length === 0" align="center">
+    There are no doctors associated as of now. 
+    <br/>Please use the add button to add one.
+</div>
+    
+<div fxLayout="column" fxLayoutAlign="center center" style="margin-top:10px;">
+    <button mat-raised-button color="accent" type="button" (click)="addDoctor()"><mat-icon>add</mat-icon>Add Doctor</button>
+</div>
+<div fxLayout="column" *ngIf="breadCrumbs.length > 0" fxLayoutAlign="center center" style="margin-top:10px;">
+    <button mat-raised-button color="accent" type="button"  (click)="proceedNext()">Proceed</button>
+</div>
+<app-loader *ngIf="state?.loading"></app-loader>

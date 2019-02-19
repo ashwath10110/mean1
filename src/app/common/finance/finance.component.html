@@ -1,0 +1,82 @@
+
+<form fxLayout="row wrap" id="financeForm" fxLayoutAlign="space-around center" #financeForm [formGroup]="financeFormGroup">
+  
+  <mat-form-field fxFlex="48">
+    <mat-label>Banking Type</mat-label>
+    <mat-select id="bankingType" #fontSize (selectionChange)="handleBankingTypeChange($event)" value="INTERNATIONAL" formControlName="bankingType" required>
+      <mat-option value="INTERNATIONAL">International</mat-option>
+      <mat-option value="DOMESTIC">Domestic</mat-option>
+    </mat-select>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.bankingType?.errors?.required">Banking Type is Required</span>
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field fxFlex="48">
+    <mat-label>Account Type</mat-label>
+    <mat-select #fontSize value="CURRENT" id="accountType" formControlName="accountType" required>
+      <mat-option value="CURRENT">Current</mat-option>
+      <mat-option value="SAVINGS">Savings</mat-option>
+    </mat-select>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.accountType?.errors?.required">Account Type is Required</span>
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field fxFlex="48">
+    <input matInput placeholder="Account Number" id="accountNo" formControlName="accountNo" required>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.accountNo?.errors?.required">Account Number is Required</span>
+      <span *ngIf="financeFormGroup?.controls.accountNo?.errors?.pattern">Account Number is invalid</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="48">
+    <input matInput placeholder="Owner Name" id="accountName" formControlName="accountName" required>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.accountName?.errors?.required">Account holder name is Required</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="48">
+    <input matInput placeholder="Bank Name" id="bankName" formControlName="bankName" required>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.bankName?.errors?.required">Bank name is required</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="48">
+    <input matInput placeholder="Bank Branch" id="branchName" formControlName="branchName" required>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.branchName?.errors?.required">Branch name is required</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="48">
+    <input matInput placeholder="Currency" id="currency" formControlName="currency" required>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.currency?.errors?.required">Currency name is required</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="48" *ngIf="financeFormGroup?.get('bankingType').value==='DOMESTIC'">
+    <input matInput placeholder="Ifsc Code" id="ifscCode" formControlName="ifscCode" required>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.ifscCode?.errors?.required">IFSC Code is required</span>
+      <span *ngIf="financeFormGroup?.controls.ifscCode?.errors?.pattern">IFSC Code is invalid</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="48" *ngIf="financeFormGroup?.get('bankingType').value==='INTERNATIONAL'">
+    <input matInput placeholder="Swift Code" id="swiftCode" formControlName="swiftCode" required>
+    <mat-error>
+      <span *ngIf="financeFormGroup?.controls.swiftCode?.errors?.required">Swift Code is required</span>
+      <span *ngIf="financeFormGroup?.controls.swiftCode?.errors?.pattern">Swift Code is invalid</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="48">
+    <input matInput placeholder="Micr" id="micr" formControlName="micr">
+  </mat-form-field>
+
+</form>

@@ -1,0 +1,16 @@
+
+<div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;">
+    <div class="profile-img"> <img src="assets/images/users/profile.png" alt="user"> </div>
+    <div class="profile-text">
+        <a aria-haspopup="true" matTooltip={{role}} matTooltipPosition="above">{{user.firstName}} &nbsp; {{user.lastName}}</a>
+    </div>
+</div>
+<div *ngFor="let item of MENUITEMS" (click)="handleSideBarClick(item)" class="mat-nav-list mat-list-base">
+    <mat-list-item fxLayout="row" fxLayoutAlign="flex-start center" [routerLinkActive]="['nav-item-active']"
+        class="nav-item" *ngxPermissionsOnly="item.permissions" mat-ripple>
+        <a [id]="item.id">
+        <mat-icon mat-icon-button style="vertical-align: middle;">{{item.icon}}</mat-icon>
+        <span class="mat-body-2">{{item.name}}</span>
+        </a>
+    </mat-list-item>
+</div>

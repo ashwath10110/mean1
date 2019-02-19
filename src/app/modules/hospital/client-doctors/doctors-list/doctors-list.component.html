@@ -1,0 +1,33 @@
+<div class="table_fix_h" style="margin-top:10px;">
+    <p-table [value]="doctorsList" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Designation</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-doctor>
+            <tr>
+                <td>{{doctor.name}}</td>
+                <td>{{doctor.Specialization}}</td>
+                <td>{{doctor.designation}}</td>
+                <td>{{doctor.email}}</td>
+                <!-- <td>
+                    <button mat-icon-button color="warn" type="submit" (click)="removeDoctorFromUnitFn(doctor)"> Remove From Unit </button>
+                </td> -->
+                <td>
+                    <button mat-icon-button  type="submit" (click)="editDoctors(doctor)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" *ngIf="this.roles[0].indexOf('ADMINISTRATOR') >= 0" type="submit" (click)="deleteDoctorFn(doctor)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

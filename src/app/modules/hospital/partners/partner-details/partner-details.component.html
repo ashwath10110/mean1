@@ -1,0 +1,175 @@
+<span class="page-title mat-display-1">Partner Details</span>
+<app-approval-changes *ngIf="showApproveButton && approvalComments" [approvalComments]="approvalComments"></app-approval-changes>
+<p-breadcrumb [model]="breadCrumbs" *ngIf="!showApproveButton"></p-breadcrumb>
+<mat-card class="content">
+        <form fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="partnerInfoFormGroup" (ngSubmit)="onSubmitPartnerInfo(partnerInfoFormGroup)">
+                <mat-form-field fxFlex="48">
+                        <input matInput placeholder="Name" formControlName="name" required>
+                        <mat-error>
+                            <span *ngIf="partnerInfoFormGroup?.controls.name?.errors?.required">Partner Name Required</span>
+                        </mat-error>
+                </mat-form-field>
+
+                <mat-form-field  fxFlex="48">
+                        <mat-select placeholder="Type" formControlName="partnerType" required>
+                           
+                            <mat-option *ngFor="let type of partnerTypes" [value]="type.value">{{type.displayValue}}</mat-option>
+                        </mat-select>
+                        
+                        <mat-error>
+                            <span *ngIf="partnerInfoFormGroup?.controls.partnerType?.errors?.required">Partner Type Required</span>
+                        </mat-error>
+        
+                </mat-form-field>
+
+                
+        <mat-form-field fxFlex="48">
+                <mat-select placeholder="Role" formControlName="partnerRole" required>
+                    <mat-option *ngFor="let role of roles" [value]="role.value">{{role.displayValue}}</mat-option>
+                </mat-select>
+                
+                <mat-error>
+                    <span *ngIf="partnerInfoFormGroup?.controls.partnerRole?.errors?.required">Partner Role Required</span>
+                </mat-error>
+    
+        </mat-form-field>
+        
+
+        <mat-form-field fxFlex="48"> 
+                <mat-select placeholder="Partnering Hospital" formControlName="unitId" required>
+                    <mat-option *ngFor="let unit of hospitalUnits" [value]="unit.value">{{unit.displayValue}}</mat-option>
+                </mat-select>
+                
+                <mat-error>
+                    <span *ngIf="partnerInfoFormGroup?.controls.hospitalUnit?.errors?.required">Partner Hospital Required</span>
+                </mat-error>
+        
+        </mat-form-field>
+
+        <mat-form-field   fxFlex="98">
+                <input matInput placeholder="Corporate Identification Number" formControlName="cin" required maxlength="21">
+                <mat-error>
+                    <span *ngIf="partnerInfoFormGroup?.controls.cin?.errors?.required">Corporate Identification Number Required</span>
+                    <span *ngIf="partnerInfoFormGroup?.controls.cin?.errors?.pattern"> Invalid Corporate Identification Number</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field   fxFlex="48">
+                    <input matInput placeholder="PAN" formControlName="pan" required maxlength="10">
+                    <mat-error>
+                        <span *ngIf="partnerInfoFormGroup?.controls.pan?.errors?.required">PAN Number Required</span>
+                        <span *ngIf="partnerInfoFormGroup?.controls.pan?.errors?.pattern"> Invalid PAN Number</span>
+                        <span *ngIf="partnerInfoFormGroup?.controls.pan?.errors?.minlength">  PAN Number should be of 10 characters</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field   fxFlex="48">
+                    <input matInput placeholder="GSTIN" formControlName="gstin" required maxlength="15">
+                    <mat-error>
+                        <span *ngIf="partnerInfoFormGroup?.controls.gstin?.errors?.required">GSTIN Required</span>
+                        <span *ngIf="partnerInfoFormGroup?.controls.gstin?.errors?.pattern"> Invalid GSTIN Number</span>
+                    </mat-error>
+                </mat-form-field>
+                <!-- <div>Address</div>
+                <mat-form-field   fxFlex="98">
+                        <input matInput placeholder="Address" formControlName="address1" required maxlength="35">
+                        <mat-error>
+                            <span *ngIf="partnerInfoFormGroup?.controls.address1?.errors?.required">Address Details Required</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field   fxFlex="98">
+                            <input matInput placeholder="Address" formControlName="address2" maxlength="35">
+    
+                        </mat-form-field>
+                        <mat-form-field   fxFlex="98">
+                                <input matInput placeholder="City" formControlName="city" required maxlength="30">
+                                <mat-error>
+                                    <span *ngIf="partnerInfoFormGroup?.controls.city?.errors?.required">City Details Required</span>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field   fxFlex="48">
+                                    <input matInput placeholder="State" formControlName="state" required>
+                                    <mat-error>
+                                        <span *ngIf="partnerInfoFormGroup?.controls.state?.errors?.required">City Details Required</span>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field  fxFlex="48">
+                                        <mat-select placeholder="Country" formControlName="country" required>
+                                           
+                                            <mat-option *ngFor="let country of countries" [value]="country.value">{{country.displayValue}}</mat-option>
+                                        </mat-select>
+                                        
+                                        <mat-error>
+                                            <span *ngIf="partnerInfoFormGroup?.controls.partnerType?.errors?.required">Partner Type Required</span>
+                                        </mat-error>
+                        
+                                </mat-form-field> -->
+                                <!-- <div fxFlex="98">
+                                    <anms-multifileupload>
+                                    </anms-multifileupload>
+                                  </div> -->
+                <div fxFlex="98" fxLayout="row" fxLayoutAlign="start center" flexGap="40px" *ngIf="restrictAttachmentSectionBasedOnApprovals()">
+                <div class="mat-subheading-2">Attachments</div>
+                <button class="subheading-action" type="button" mat-icon-button *ngIf="showAddAttachment"
+                    (click)="hideAddAttachments()">
+                    <mat-icon color="accent">add</mat-icon>
+                </button>
+                <button class="subheading-action" type="button" mat-icon-button *ngIf="!showAddAttachment"
+                    (click)="showAttachmentButton()">
+                    <mat-icon color="accent">clear</mat-icon>
+                </button>
+                </div>
+                <div fxFlex="98" *ngIf="!showAddAttachment">
+                    <app-media-container
+                      [maxSizeInKb]="maxSizeInKb"
+                      [tenantId]="tenantId"
+                      [fileTypes]="fileTypes"
+                      [attachmentIds]="attachmentIds"
+                      (updates)="handleFileUpload($event)">
+                    </app-media-container>
+                  </div>
+                <mat-form-field fxFlex="48" align="left" *ngIf="restrictAttachmentSectionBasedOnApprovals()">
+                        <input matInput [matDatepicker]="endpicker" placeholder="Agreement Start Date" formControlName="agreementStartDate" useValueAsDate>
+                        <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endpicker></mat-datepicker>
+                </mat-form-field>
+              
+                <!-- <anms-phone-contacts fxFlex="98" [(contacts)]="contacts"></anms-phone-contacts> -->
+                <!-- <anms-partner-contact-details fxFlex="100" fxLayout="column wrap" [(contacts)]="contacts" *ngIf="partnerInfoFormGroup?.get('partnerRole').value == 'ASSOCIATE'"></anms-partner-contact-details> -->
+                <!-- <mat-form-field fxFlex="49">
+                        <input matInput placeholder="Email Id" formControlName="email" required maxlength="50">
+                        <mat-error>
+                                <span *ngIf="partnerInfoFormGroup?.controls.email?.errors?.pattern"> Invalid Email ID</span>
+                            </mat-error>
+                </mat-form-field> -->
+                <!-- <mat-form-field fxFlex="49">
+                        <input matInput placeholder="Phone Number" formControlName="phone">
+                        <mat-error>
+                                <span *ngIf="partnerInfoFormGroup?.controls.phone?.errors?.pattern"> Invalid Mobile Number</span>
+                            </mat-error>
+                        </mat-form-field>
+                <mat-form-field fxFlex="98">
+                        <input matInput placeholder="Website" formControlName="website" maxlength="50">
+                        <mat-error>
+                                <span *ngIf="partnerInfoFormGroup?.controls.website?.errors?.pattern"> Invalid Website URL</span>
+                            </mat-error>
+                </mat-form-field> -->
+            
+                <!-- <mat-form-field fxFlex="98">
+                        <input matInput placeholder="Additional Information" formControlName="additionalInfo" maxlength="100">
+                        <mat-error>
+                                <span *ngIf="partnerInfoFormGroup?.controls.website?.errors?.pattern"> Invalid Website URL</span>
+                            </mat-error>
+                </mat-form-field> -->
+
+                <div class="actions" fxFlex="98" flexLayout="row" flexLayoutAlign="center center">
+                        <button mat-raised-button color="primary" *ngIf="showApproveButton" type="submit" [disabled]="!partnerInfoFormGroup.valid">Approve details</button>
+                            <button mat-raised-button color="primary" *ngIf="showApproveButton" type="button" (click)="rejectApproval()" [disabled]="!partnerInfoFormGroup.valid" style="margin: 10px;">Reject details</button>
+                        <button mat-raised-button color="primary" *ngIf="!showApproveButton" type="submit" [disabled]="!partnerInfoFormGroup.valid">Update
+                       Partner Details   </button>
+                      </div>
+        </form>
+
+
+</mat-card>
+<app-loader *ngIf="loading"></app-loader>

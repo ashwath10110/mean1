@@ -1,0 +1,203 @@
+<div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+    <span class="page-title mat-display-1">Hospital Info</span>
+  </div>
+
+  <div *ngIf="!state?.orgData?.length">
+    Add Headquarters
+  </div>
+
+  <p-breadcrumb [model]="breadcrumbs" *ngIf="breadcrumbs.length>0"></p-breadcrumb><br />
+
+  <div *ngIf="contractType==='SINGLE'">
+    SINGLE CONTRACT
+    <div class="orgTreeStructure">
+      <div *ngIf="state?.orgData?.length" class="center">
+        <tree-root class="tree-root" [focused]="true" [nodes]="state?.orgData" class="ngTemplate">
+          <ng-template #treeNodeTemplate let-node let-index="index">
+            <div class="w480" fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="75%;" fxFlex.xs="80%">
+                <div fxLayout="column" fxLayout.xs="column">
+                  <div class="borderB2px height80" fxFlex="75%;" fxFlex.xs="80%">
+                    <div style="text-transform: uppercase">
+                      {{node?.data?.name}}
+                    </div>
+                    <div class="mat-caption">
+                      <span [ngClass]="{'isFunctional' : node.data.isFunctional, 'isNotFunctional' : !node.data.isFunctional}">
+                        {{node?.data?.isFunctional ? 'Functional' : 'Not Functional'}}
+                      </span>
+                    </div>
+                    <br />
+                    <br />
+                  </div>
+                  <div fxFlex="25%;" fxFlex.xs="80%" class="repos btnRepos btmBtns">
+                    <button mat-button (click)="goToUnitDetails(node)">
+                      <mat-icon color="accent">
+                        drafts
+                      </mat-icon>
+                      <br />
+                      Details
+                    </button>
+                    <button mat-button *ngIf="node.data.isFunctional" (click)="goToUnitSpecialities(node)">
+                      <mat-icon color="accent">
+                        local_hospital
+                      </mat-icon>
+                      <br />
+                      Specialities
+                    </button>
+                    <button mat-button *ngIf="node.data.isFunctional" (click)="goToUnitDoctors(node)">
+                      <mat-icon color="accent">
+                        group
+                      </mat-icon>
+                      <br />
+                      Doctors
+                    </button>
+                    <button mat-button (click)="goToUnitUsers(node)">
+                      <mat-icon color="accent">
+                        group
+                      </mat-icon>
+                      <br />
+                      Users
+                    </button>
+                    <button mat-button (click)="goToUnitPartners(node)">
+                      <mat-icon color="accent">
+                        group
+                      </mat-icon>
+                      <br />
+                      Partners
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="height120 borLt2px padLeft10 btnRepos" fxFlex="25%;" fxFlex.xs="80%">
+                <button mat-button (click)="addNode(node)" disabled>
+                  <mat-icon color="accent">
+                    add
+                  </mat-icon>
+                  Add Sub Unit
+                </button>
+                <button mat-button color="primary" (click)="setupNode(node)">
+                  <mat-icon color="accent">
+                    fast_forward
+                  </mat-icon>
+                  Setup Unit
+                </button>
+                <button mat-button color="accent" (click)="goToUnitSummary(node)">
+                  <mat-icon color="accent">
+                    visibility
+                  </mat-icon>
+                  View Unit
+                </button>
+                <!-- <button mat-button color="warn" (click)="deleteNode(node)">
+                  <mat-icon color="warn">
+                    delete
+                  </mat-icon>
+                  Delete Unit
+                </button> -->
+              </div>
+            </div>
+          </ng-template>
+        </tree-root>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="contractType==='MULTIPLE'">
+    MULTI CONTRACT
+    <div class="orgTreeStructure">
+      <div *ngIf="state?.orgData?.length" class="center">
+        <tree-root class="tree-root" [focused]="true" [nodes]="state?.orgData" class="ngTemplate">
+          <ng-template #treeNodeTemplate let-node let-index="index">
+            <div class="w480" fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="75%;" fxFlex.xs="80%">
+                <div fxLayout="column" fxLayout.xs="column">
+                  <div class="borderB2px height80" fxFlex="75%;" fxFlex.xs="80%">
+                    <div style="text-transform: uppercase">
+                      {{node?.data?.name}}
+                    </div>
+                    <div class="mat-caption">
+                      <span [ngClass]="{'isFunctional' : node.data.isFunctional, 'isNotFunctional' : !node.data.isFunctional}">
+                        {{node?.data?.isFunctional ? 'Functional' : 'Not Functional'}}
+                      </span>
+                    </div>
+                    <br />
+                    <br />
+                  </div>
+                  <div fxFlex="25%;" fxFlex.xs="80%" class="repos btnRepos btmBtns">
+                    <button mat-button (click)="goToUnitDetails(node)">
+                      <mat-icon color="accent">
+                        drafts
+                      </mat-icon>
+                      <br />
+                      Details
+                    </button>
+                    <button mat-button *ngIf="node.data.isFunctional" (click)="goToUnitSpecialities(node)">
+                      <mat-icon color="accent">
+                        local_hospital
+                      </mat-icon>
+                      <br />
+                      Specialities
+                    </button>
+                    <button mat-button *ngIf="node.data.isFunctional" (click)="goToUnitDoctors(node)">
+                      <mat-icon color="accent">
+                        group
+                      </mat-icon>
+                      <br />
+                      Doctors
+                    </button>
+                    <button mat-button (click)="goToUnitUsers(node)">
+                      <mat-icon color="accent">
+                        group
+                      </mat-icon>
+                      <br />
+                      Users
+                    </button>
+                    <button mat-button (click)="goToUnitPartners(node)">
+                      <mat-icon color="accent">
+                        group
+                      </mat-icon>
+                      <br />
+                      Partners
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="height120 borLt2px padLeft10 btnRepos" fxFlex="25%;" fxFlex.xs="80%">
+                <button mat-button (click)="addNode(node)">
+                  <mat-icon color="accent">
+                    add
+                  </mat-icon>
+                  Add Sub Unit
+                </button>
+                <button mat-button color="primary" *ngIf="node.data.isFunctional" (click)="setupNode(node)">
+                  <mat-icon color="accent">
+                    fast_forward
+                  </mat-icon>
+                  Setup Unit
+                </button>
+                <button mat-button color="accent" (click)="goToUnitSummary(node)">
+                  <mat-icon color="accent">
+                    visibility
+                  </mat-icon>
+                  View Unit
+                </button>
+                <button mat-button color="warn" (click)="deleteNode(node)" *ngIf="(node.data.parentId && this.roles[0].indexOf('ADMINISTRATOR') >= 0)">
+                  <mat-icon color="warn">
+                    delete
+                  </mat-icon>
+                  Delete Unit
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </tree-root>
+      </div>
+    </div>
+  </div>
+
+  <app-loader *ngIf="state?.loading"></app-loader>
+
+</div>

@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-content>
+    <div *ngIf="departmentsList?.length == 0" class="deptListInfo">
+      Please select the specializations to be added.
+    </div>
+
+    <div *ngIf="departmentsList?.length" class="deptListInfo">
+      <b>Specializations:</b>
+        <div class="selectedDeptList">
+          <ul>
+            <li *ngFor="let dept of departmentsList">
+              {{dept.label}}
+            </li>
+          </ul>
+        </div>
+    </div>
+  </mat-card-content>
+</mat-card>

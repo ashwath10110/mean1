@@ -1,0 +1,29 @@
+Users
+<p-breadcrumb [model]="breadCrumbs" *ngIf="breadCrumbs.length>0"></p-breadcrumb>
+
+<app-users-list
+    [users]="state?.unitMappingUsers"
+    (deleteUser)="handleDeleteUnitUserMap($event)"
+    (editUser)="handleEditUser($event)"
+></app-users-list>
+
+
+<div *ngIf="state?.unitMappingUsers?.length === 0" align="center">
+    There are no users associated as of now. 
+    <br/>Please use the add button to add one.
+</div>
+
+<br/>
+
+<div align="center">
+    <button mat-raised-button color="accent" (click)="addUser()"><mat-icon>add</mat-icon>Add User</button>
+</div>
+<br/>
+<br/>
+<div align="center"  *ngIf="breadCrumbs.length > 0">
+    <button mat-raised-button color="accent" (click)="proceedNext()">Proceed</button>
+</div>
+<!-- {{showApproveButton}} -->
+<!-- <button (click)="proceedToPartners()">Proceed To Partners</button> -->
+
+<app-loader *ngIf="state?.loading"></app-loader>

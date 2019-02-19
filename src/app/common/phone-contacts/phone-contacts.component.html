@@ -1,0 +1,41 @@
+<div fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="48px">
+  <button *ngIf="isAddBtnVisible" mat-button color="accent" (click)="onClickAddContact($event)" [disabled]="contacts?.length == 5">
+    <mat-icon>add</mat-icon>Add New
+  </button>
+</div>
+<div class="new-contact" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center" *ngIf="isAddVisible">
+  <span fxFlex="100" class="mat-body-2">Enter New Contact</span>
+  <mat-form-field fxFlex="45">
+    <input type="number" matInput [(ngModel)]="newContact.number" placeholder="Phone Number">
+  </mat-form-field>
+  <mat-form-field fxFlex="45">
+    <mat-select placeholder="Select Type" [(value)]="newContact.type">
+      <mat-option *ngFor="let contactType of contactTypes" [value]="contactType">
+        {{contactType?.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div fxFlex="6">
+    <button color="accent" [disabled]="!newContact?.number || !newContact?.type" mat-icon-button (click)="onClickSaveContact($event, newContact)">
+      <mat-icon>check</mat-icon>
+    </button>
+    <button color="warn" mat-icon-button (click)="isAddVisible = false; isAddBtnVisible = true;">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<ng-container *ngIf="contacts?.length != 0">
+  <div fxFlex="100" *ngFor="let contact of contacts" fxLayoutAlign="space-between center">
+    <mat-icon class="phone-icon">phone</mat-icon>
+    <span fxFlex="45" class="number mat-body-2">{{contact?.number}}</span>
+    <span fxFlex="45" class="mat-body-1">{{contact?.type?.name}}</span>
+    <div fxFlex="6">
+      <button mat-icon-button color="warn" (click)="onClickRemoveContact($event, contact)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-container>
+<div fxFlex="100" *ngIf="(contacts || []).length == 0" fxLayoutAlign="start center">
+  <span class="mat-body-2">There are no contacts</span>
+</div>

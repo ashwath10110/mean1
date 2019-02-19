@@ -1,0 +1,18 @@
+<div class="login-main">
+    <form action="#" class="form" [formGroup]="form" (ngSubmit)="onSubmit(form)" id="loginForm">
+        <h1 class="form__title">Medbud</h1>
+        <div class="form__group">
+            <input type="text" id="username" class="form__input" placeholder="Username" [formControl]="form.controls['username']">
+            <label for="#" class="form__label">@Username</label>
+            <span class="error-message" *ngIf="form?.controls.username?.errors?.required">Username Mandatory</span>
+        </div>
+        <div class="form__group">
+            <input type="password" id="password" class="form__input" placeholder="Password" [formControl]="form.controls['password']">
+            <label for="#" class="form__label">Password</label>
+            <span class="error-message" *ngIf="form?.controls.password?.errors?.required">Password Mandatory</span>
+        </div>
+        <button class="form__button" type="submit" [disabled]="!form.valid">Login</button> 
+    </form>
+</div>
+
+<app-loader *ngIf="loading"></app-loader>

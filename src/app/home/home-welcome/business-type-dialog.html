@@ -1,0 +1,24 @@
+<form [formGroup]="clientContractFormGroup" (ngSubmit)="onSubmitClientContract(clientContractFormGroup)">
+    <h1 mat-dialog-title fxLayoutAlign="space-between center"><span>Select a Business Type</span><button color="accent"
+            mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button></h1>
+    <div mat-dialog-content style="min-height:150px;">
+        <!-- <p-selectButton [options]="categories" formControlName="selectedCategory">
+            <mat-card class="mat-elevation-z8" *ngFor="let item of categories">
+                <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+                    <mat-icon [color]="selectedCategory == item ? 'accent' : ''">{{item.icon}}</mat-icon>
+                    <span>{{item.name}}</span>
+                </mat-card-content>
+            </mat-card>
+        </p-selectButton> -->
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button color="accent" (click)="onNoClick()">
+            <mat-icon>close</mat-icon>No Thanks
+        </button>
+        <button mat-button color="primary" [disabled]="!clientContractFormGroup.valid" cdkFocusInitial>
+            <mat-icon>check</mat-icon>Proceed
+        </button>
+    </div>
+</form>

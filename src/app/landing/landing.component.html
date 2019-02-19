@@ -1,0 +1,74 @@
+
+<div *ngIf="getState | async as s">
+
+    <div *ngIf="s.isLoaded">
+
+        <ul class="project__list">
+            <li class="project__item">
+                <a (click)="onHomeClick()" id="homeLink" class="project__link">Go to Home</a>
+            </li>
+        </ul>
+
+        <div class="project" *ngIf="hasRole('SUPER_ADMIN')">
+
+            <ul class="project__list">
+                <!-- <li class="project__item">
+                    <a (click)="onAgenciesClick()" class="project__link">Agencies</a>
+                </li> -->
+                <li class="project__item">
+                    <a (click)="onClientsClick()" id="allClients" class="project__link">Clients</a>
+                </li>
+                <!-- <li class="project__item">
+                    <a (click)="onApprovalsClick()" id="portalApprovals" class="project__link">Approvals</a>
+                </li> -->
+            </ul>
+
+            <ul class="project__bg-list">
+                <li class="project__bg-item"></li>
+                <li class="project__bg-item"></li>
+                <li class="project__bg-item"></li>
+            </ul>
+
+        </div>
+
+        <div class="project" *ngIf="hasRole('ADMINISTRATOR')">
+
+            <ul class="project__list">
+                <!-- <li class="project__item">
+                    <a (click)="onAgenciesClick()" class="project__link">Go to Users(Dev easy)</a>
+                </li> -->
+                <li class="project__item">
+                    <a (click)="onOrgtreeClick()" id="hospitalInfo" class="project__link">Hospital Info</a>
+                </li>
+                <li class="project__item">
+                    <a (click)="onApprovalsClick()" id="clientApprovals" class="project__link">Approvals</a>
+                </li>
+            </ul>
+
+            <ul class="project__bg-list">
+                <li class="project__bg-item"></li>
+                <li class="project__bg-item"></li>
+            </ul>
+
+        </div>
+
+        <div class="project" *ngIf="hasRole('USER')">
+
+            <ul class="project__bg-list">
+                <li class="project__bg-item"></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="!s.isLoaded">
+        <div class="loader">Loading...</div>
+    </div>
+
+</div>
+
+<main>
+    <h1><a target="_blank">Medbud</a></h1>
+    <p><a target="blank">Medical Tourism</a></p>
+</main>

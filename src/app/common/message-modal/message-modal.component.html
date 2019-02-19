@@ -1,0 +1,726 @@
+<div *ngIf="name =='contractSuccess'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Contract Details Successfully Captured. Do you wish to proceed to next?
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">No, Thanks</button>
+    <button mat-button (click)="onProceed('contract')">Yes</button>
+  </div>
+</div>
+<div *ngIf="name =='addressSuccess'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Address Details Successfully Captured. Do you wish to proceed to next?
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">No, Thanks</button>
+    <button mat-button (click)="onProceed('client-address-setup')">Yes</button>
+  </div>
+</div>
+<div *ngIf="name =='financeSuccess'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Finance Details Successfully Captured. Do you wish to proceed to next?
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">No, Thanks</button>
+    <button mat-button (click)="onProceed('client-finance-setup')">Yes</button>
+  </div>
+</div>
+
+<div *ngIf="name =='clientContactsSuccess'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Contact person details have been captured. Do you wish to proceed to next?
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onSetupAgain('contract')">Setup again</button> -->
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onProceed('client-contact-setup')">Yes</button>
+  </div>
+</div>
+
+<div *ngIf="name =='no-units'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Lets setup Headquarters.
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name=='empty-contract'">
+  <h1 mat-dialog-title align="center">Contract</h1>
+  <div mat-dialog-content align="center">
+    <div>
+      Please start by entering contract details.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='non-empty-contract'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Contract Details already captured.
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <!-- <button mat-button (click)="onSetupAgain('contract')">Setup again</button> -->
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onProceed('contract')">Lets Proceed</button>
+  </div>
+</div>
+
+<div *ngIf="name =='delete-client'" align="center">
+  <h1 mat-dialog-title>Delete client!</h1>
+  <div mat-dialog-content>
+    <div>
+      Are you sure you want to delete this client
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+
+<div *ngIf="name=='empty-admin-account'" align="center">
+  <h1 mat-dialog-title>Admin Setup</h1>
+  <div mat-dialog-content>
+    <div>
+      Lets setup Admin Details.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='non-empty-admin-account'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Admin Details already captured.
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <!-- <button mat-button (click)="onSetupAgain('admin-account')">Setup again</button> -->
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onProceed('admin-account')">Lets Proceed</button>
+  </div>
+</div>
+
+
+<div *ngIf="name =='one-unit'" align="center">
+  <h1 mat-dialog-title>Headquarters!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      We have set up Headquarters for you. Please proceed by adding more details.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onSetupAgain('org-tree')">Setup again</button> -->
+    <!-- <button mat-button (click)="onNoClick()">Cancel</button> -->
+    <button mat-button (click)="onProceed('org-tree')">Setup unit details</button>
+  </div>
+</div>
+
+<div *ngIf="name =='specialities'">
+
+  <div *ngIf="data?.currentSpecialities?.length">
+    <h1 mat-dialog-title>Message!!!</h1>
+    <div mat-dialog-content>
+      {{data.currentSpecialities.length}} Specialities exist.
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onAddDepartmentsClick()">Add more Specialities</button>
+      <button mat-button (click)="onProceedClick()">Proceed to Add Doctors</button>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+  </div>
+
+  <div *ngIf="!data?.currentSpecialities?.length">
+    <h1 mat-dialog-title>Message!!!</h1>
+    <div mat-dialog-content>
+      No Specialities exist.
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onAddDepartmentsClick()">Add Specialities</button>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+  </div>
+
+</div>
+<div *ngIf="name =='unit-specialities-success'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Unit Specialities Successfully updated.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onProceed('specialities')">Proceed</button>
+  </div>
+</div>
+<div *ngIf="name =='specialites-for-approval'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Unit Specialities have been sent for Approval.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onProceed('specialities')">Ok, Thanks</button>
+  </div>
+</div>
+
+<div *ngIf="name =='add-headquarters-success'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Let’s first define your Organization hierarchy.
+      <br>
+      We have already added a Head Office for you.
+      <br>
+      Now let us add the sub units under your Head Office if any ?
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='doctors'">
+
+  <div *ngIf="data?.doctors?.length">
+    <h1 mat-dialog-title>Message!!!</h1>
+    <div mat-dialog-content>
+      {{data.doctors}} Doctors exist.
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onProceedClick()">Proceed to map doctors</button>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+  </div>
+
+  <div *ngIf="!data?.doctors?.length">
+    <h1 mat-dialog-title>Message!!!</h1>
+    <div mat-dialog-content>
+      No Doctors exist.
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onAddDepartmentsClick()">Add Doctors</button>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="name =='users-exist'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Users Exist
+      <br>
+      Lets proceed to add users to this unit
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='deleteUser'" align="center">
+  <h1 mat-dialog-title>Delete!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Do you want to delete User from all the units?
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onProceed('del-user-all-units')">Proceed</button>
+  </div>
+</div>
+<div *ngIf="name =='deleteUnitUserMap'" align="center">
+  <h1 mat-dialog-title>Delete!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Do you want to delete User from this unit?
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onProceed('unit-user-map')">Proceed</button>
+  </div>
+</div>
+
+<div *ngIf="name =='media-exist'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Media Exist
+      <br>
+      Done
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='setup-done'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Setup Completed
+      <br>
+      Done
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='delete-hospital-unit'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Sub units Exist.
+      <br>
+      please delete them before deleting this headquarters unit.
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='sub-units-exist'">
+  <h1 mat-dialog-title>Message!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Sub units Exist.
+      <br>
+      please delete them before deleting this unit.
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='common-message-delete'" align="center">
+  <h1 mat-dialog-title>Alert!!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Are you sure you want to delete.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+</div>
+
+<div *ngIf="name =='delete-partner'" align="center">
+    <h1 mat-dialog-title>Alert!!!</h1>
+  <mat-dialog-content>
+    Are you sure, want to delete this partner?
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="name =='specialities-successful'" align="center">
+  <h1 mat-dialog-title>Success!!!</h1>
+  <div mat-dialog-content>
+    Specialities successfully updated in the unit!!
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onSetupAgain('contract')">Setup again</button> -->
+    <button mat-button (click)="onNoClick()">Ok, thanks</button>
+    <button mat-button (click)="onProceed('specialities')">Proceed to Next</button>
+  </div>
+</div>
+
+<div *ngIf="name =='add-doctor-success'" align="center">
+  <h1 mat-dialog-title>
+    Success!!!
+  </h1>
+  <div mat-dialog-content>
+    Doctor has been updated successfully!
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="addMore('doctors')">Add more doctors</button>
+    <button mat-button (click)="onProceed('doctors')">Proceed to next</button>
+  </div>
+</div>
+
+<div *ngIf="name =='add-user-success'" align="center">
+  <h1 mat-dialog-title>
+    Success!!
+  </h1>
+  <div mat-dialog-content>
+    User added successfully!
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="addMore('users')">Add more users</button>
+    <button mat-button (click)="onProceed('users')">Proceed to next</button>
+  </div>
+</div>
+
+<div *ngIf="name =='unit-finance-success'" align="center">
+    <h1 mat-dialog-title>
+      Success!!!
+    </h1>
+    <div mat-dialog-content>
+      <div>
+        Unit finance are updated successfully.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button (click)="onProceed('unit-finance')">Thanks, Let's Proceed</button>
+    </div>
+  </div>
+
+<div *ngIf="name =='unit-finance-for-approval'" align="center">
+  <h1 mat-dialog-title>
+    Success!!
+  </h1>
+  <div mat-dialog-content>
+      Unit finance details have been sent for approval.
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onProceed('unit-finance-approval')">Ok, Thanks</button>
+  </div>
+</div>
+
+<div *ngIf="name =='client-detail-success'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>
+    <div>
+        Client Details are updated successfully.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onProceed('client-detail')">Ok, Thanks</button>
+  </div>
+</div>
+
+<div *ngIf="name =='client-data-success'" align="center">
+    <h1 mat-dialog-title>Success!!</h1>
+    <div mat-dialog-content>
+      <div>
+        Address Details are updated successfully.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onProceed('client-data')">Ok, Thanks</button>
+    </div>
+  </div>
+
+<div *ngIf="name =='client-contact-success'" align="center">
+  <h1 mat-dialog-title>
+    Success!!!
+  </h1>
+  <div mat-dialog-content>
+    Client Contact Person has been updated successfully
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick('client-contact-person')">Thanks</button>
+    <button mat-button (click)="onProceed('client-contact-person')">Add New?</button>
+  </div>
+</div>
+<div *ngIf="name =='delete-client-contact-success'" align="center">
+  <h1 mat-dialog-title>
+    Success!!!
+  </h1>
+  <div mat-dialog-content>
+    Client Contact Person Deleted successfully !!!
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick('delete-client-contact')">Ok Thanks</button>
+    <button mat-button (click)="onProceed('delete-client-contact')">Delete again</button>
+  </div>
+</div>
+
+<div *ngIf="name =='check-delete-client-contact'" align="center">
+  <h1 mat-dialog-title> 
+    Alert!!
+  </h1>
+  <div mat-dialog-content>
+    Are you sure, you want delete client contact?
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick('check-delete-client-contact')">No</button>
+    <button mat-button (click)="onProceed('check-delete-client-contact')">Yes</button>
+  </div>
+</div>
+
+<div *ngIf="name =='client-finance-success'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>
+    <div>
+      Finance details are successfully updated.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onProceed('client-finance')">Ok, Thanks</button>
+  </div>
+</div>
+
+<div *ngIf="name =='client-contract-success'" align="center">
+  <h1 mat-dialog-title>Success!!</h1>
+  <div mat-dialog-content>Contract details have been updated successfully.</div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onProceed('client-contract-success')">Ok, Thanks</button>
+  </div>
+</div>
+
+<div *ngIf="name =='client-admin-user'" align="center">
+  <h1 mat-dialog-title>Success</h1>
+  <div mat-dialog-content>
+    <div>
+      Client Admin User's details have been updated successfully.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onProceed('client-admin-user')">Ok, Thanks</button>
+  </div>
+</div>
+
+<div *ngIf="name =='partner-finance-success-modal'" align="center">
+  <h1 mat-dialog-title>Success</h1>
+  <div mat-dialog-content>
+    <!-- <mat-icon>check-circle</mat-icon> -->
+    <div *ngIf="!data.approvalId">
+      Partner Details Added Successfully.
+      Please select the following options to Proceed
+    </div>
+    <div *ngIf="data.approvalId">
+        Partner Details Captured Successfully.
+        Submitted for Approval Process.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onSetupAgain('contract')">Setup again</button> -->
+    <button mat-button (click)="onNoClick('partner')">Proceed To Org Tree</button>
+    <button mat-button (click)="onNoClick('partner')">Proceed To Add Another Unit</button>
+    <button mat-button (click)="onProceed('partner-finance-success-modal')">Proceed To Add Another Partner</button>
+  </div>
+ 
+</div>
+
+<div *ngIf="name =='partner-details-success-modal'" align="center">
+  <h1 mat-dialog-title>Success</h1>
+  <div mat-dialog-content>
+    <div *ngIf="!data?.approvalId">
+      Partner Info Updated Successfully.
+      Proceeding to Partner Address.
+    </div>
+    <div *ngIf="data?.approvalId">
+      Partner Info Updates Successfully Captured and Subjected to Approval Process.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onSetupAgain('contract')">Setup again</button> -->
+    <button mat-button (click)="onProceed('partner-details-success-modal')">OK</button>
+  </div>
+</div>
+
+
+<div *ngIf="name =='CreateAdminUserSuccess'" align="center">
+  <h1 mat-dialog-title>Success</h1>
+  <div mat-dialog-content>
+    <div>
+      Admin User Updated Successfully. Do you wish to proceed to next?
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onProceed('CreateAdminUserSuccess')">Yes</button>
+  </div>
+</div>
+
+<div *ngIf="name =='partner-address-success-modal'" align="center">
+  <h1 mat-dialog-title>Success</h1>
+  <div mat-dialog-content>
+      <!-- <mat-icon style="color: green; font-size: 36px;">check_circle</mat-icon> -->
+    <div *ngIf="!data.approvalId">
+      Partner Contact Info Updated Successfully.
+     <div *ngIf="compData.partnerRole === 'VIEWER'">Proceeding to Partner Finance.</div>
+     <div *ngIf="compData.partnerRole === 'ASSOCIATE'">Proceeding to Partner Contact Persons</div>
+    </div>
+    <div *ngIf="data.approvalId">
+        Partner Contact Info Captured Successfully.
+        Submitted for Approval Process.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onSetupAgain('contract')">Setup again</button> -->
+    <button mat-button (click)="onProceed('partner-address-success-modal')">OK</button>
+  </div>
+</div>
+
+<div *ngIf="name =='partner-contact-person-details-success-modal'" align="center">
+  <h1 mat-dialog-title>Success</h1>
+  <div mat-dialog-content>
+      <!-- <mat-icon style="color: green; font-size: 36px;">check_circle</mat-icon> -->
+    <div *ngIf="!data.approvalId">
+      Partner Contact Persons Info Updated Successfully.
+      Proceeding to Partner Finance.
+    </div>
+    <div *ngIf="data.approvalId">
+        Partner Contact Persons Info Updated Successfully.
+        Submitted for Approval Process.
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <!-- <button mat-button (click)="onSetupAgain('contract')">Setup again</button> -->
+    <button mat-button (click)="onProceed('partner-contact-person-details-success-modal')">OK</button>
+  </div>
+</div>
+
+<div *ngIf="name =='unit-sent-for-approvals'" align="center">
+  <h1 mat-dialog-title>Success</h1>
+  <div mat-dialog-content>
+    <div>
+      New Unit Request has been sent for approvals.<br/>
+      Once approved you would be able to add more details to it!
+    </div>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onProceed('unit-sent-for-approvals')">Ok, Thanks</button>
+  </div>
+</div>
+
+<div *ngIf="name =='unit-details-success'" align="center">
+    <h1 mat-dialog-title>Success!!</h1>
+    <div mat-dialog-content>
+      <div>
+        Unit details Successfully updated.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button (click)="onProceed('unit-details-success')">Proceed</button>
+    </div>
+  </div>
+
+  <div *ngIf="name =='unit-creation-successfull'" align="center">
+    <h1 mat-dialog-title>Success!!</h1>
+    <div mat-dialog-content>
+      <div>
+          Unit creation is successfull. <br/>
+          You can go ahead and set it up.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onProceed('unit-creation-successfull')">Ok, Thanks</button>
+    </div>
+  </div>
+  
+  <div *ngIf="name =='unit-details-for-approval'" align="center">
+    <h1 mat-dialog-title>Success!!</h1>
+    <div mat-dialog-content>
+      <div>
+          Unit Details are sent for Approval.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onProceed('unit-details-approval')">Ok, Thanks</button>
+    </div>
+  </div>
+  <div *ngIf="name =='unit-address-success'" align="center">
+    <h1 mat-dialog-title>Success!!</h1>
+    <div mat-dialog-content>
+      <div>
+        Unit address Successfully updated.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button (click)="onProceed('unit-address-success')">Proceed</button>
+    </div>
+  </div>
+  
+  <div *ngIf="name =='unit-address-for-approval'" align="center">
+    <h1 mat-dialog-title>Success!!</h1>
+    <div mat-dialog-content>
+      <div>
+          Unit Address are sent for Approval.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onProceed('unit-address-approval')">Ok, Thanks</button>
+    </div>
+  </div>
+
+  <div *ngIf="name =='unit-media-success'" align="center">
+    <h1 mat-dialog-title>Success!!</h1>
+    <div mat-dialog-content>
+      <div>
+        Unit Media Successfully updated.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button (click)="onProceed('unit-media-success')">Proceed</button>
+    </div>
+  </div>
+  
+  <div *ngIf="name =='unit-media-for-approval'" align="center">
+    <h1 mat-dialog-title>Success!!</h1>
+    <div mat-dialog-content>
+      <div>
+          Unit Media are sent for Approval.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onProceed('unit-media-approval')">Ok, Thanks</button>
+    </div>
+  </div>
+
+  <div *ngIf="name =='partner-details-submitted-for-approval'" align="center">
+    <h1 mat-dialog-title>Success</h1>
+    <div mat-dialog-content>
+      <div>
+        Partner-Details are successfully captured and are submitted for Approvals.
+      </div>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button mat-button (click)="onProceed('partner-details-submitted-for-approval')">Ok, Thanks</button>
+    </div>
+  </div>
